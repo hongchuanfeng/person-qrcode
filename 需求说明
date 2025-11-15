@@ -42,3 +42,12 @@
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7274710287377352"
      crossorigin="anonymous"></script>
+
+
+
+
+使用next.js 对接supabase的google 登录，
+项目的project URL=https://mthqwnbjxfikntnpwrnw.supabase.co，
+API Key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aHF3bmJqeGZpa250bnB3cm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMTQyMDMsImV4cCI6MjA3ODc5MDIwM30.ilF2ytyOX8njMTFNHBwyNnMEvVIduCfHEwCSkAtKT28, 
+请帮忙实现google 登录功能，并实现google 登录后，自动登录到网站，登录按钮放到切换语言前面，
+请实现该功能，并实现该功能后，请提供代码，并提供详细的使用说明。

@@ -17,6 +17,20 @@ export default function SubscribePage() {
     setErrorMessage(null);
     startTransition(async () => {
       try {
+        // Get product ID for the selected plan
+        const PRODUCT_IDS: Record<PlanKey, string> = {
+          monthly: 'prod_4L6YdpnlJEdRjzPg9OjH8Z',
+          quarterly: 'prod_6MCeuAFjzFqFZduAn74Ew7',
+          yearly: 'prod_6LKkd6OJ8pLCesUdoVNV9I'
+        };
+
+        const productId = PRODUCT_IDS[selectedPlan];
+        
+        // Save product ID to session storage for success page
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('lastProductId', productId);
+        }
+
         const response = await fetch('/api/creem/checkout', {
           method: 'POST',
           headers: {

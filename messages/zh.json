@@ -8,7 +8,13 @@
     "copyright": "版权信息",
     "subscribe": "订阅",
     "batch": "批量生成",
-    "chdaoai": "chdaoai"
+    "chdaoai": "chdaoai",
+    "signIn": "登录",
+    "signOut": "登出",
+    "signInWithGoogle": "使用 Google 登录",
+    "welcome": "欢迎",
+    "loading": "加载中...",
+    "membership": "会员中心"
   },
   "home": {
     "title": "个性化二维码生成器",
@@ -355,7 +361,10 @@
       "invalidFormat": "无效的文件格式。请上传CSV或Excel文件。",
       "emptyFile": "文件为空或没有数据。",
       "parseError": "解析文件时出错。请检查文件格式。",
-      "generateError": "生成二维码时出错。请重试。"
+      "generateError": "生成二维码时出错。请重试。",
+      "loginRequired": "请先登录才能生成二维码。正在跳转到登录页面...",
+      "subscriptionRequired": "批量生成功能需要订阅套餐。请先订阅套餐。",
+      "subscriptionCheckFailed": "检查订阅状态失败。请重试。"
     },
     "success": {
       "generated": "成功生成 {count} 个二维码",
@@ -370,6 +379,32 @@
     "bgColor": "背景颜色",
     "centerImage": "中心图片（可选）",
     "removeImage": "移除图片"
+  },
+  "membership": {
+    "title": "我的会员",
+    "description": "查看您的会员信息和订阅历史",
+    "loading": "加载会员信息中...",
+    "loginRequired": "请先登录以查看您的会员信息。",
+    "goHome": "返回首页",
+    "retry": "重试",
+    "userInfo": "用户信息",
+    "email": "邮箱",
+    "verified": "已验证",
+    "activeSubscription": "当前订阅",
+    "noActiveSubscription": "无有效订阅",
+    "subscribePrompt": "您没有有效的订阅。订阅套餐以使用批量生成功能。",
+    "subscribeNow": "立即订阅",
+    "subscriptionHistory": "订阅历史",
+    "planType": "套餐类型",
+    "startDate": "开始日期",
+    "expiryDate": "到期日期",
+    "purchasedDate": "购买日期",
+    "productId": "产品ID",
+    "statusActive": "有效",
+    "statusExpired": "已过期",
+    "planMonthly": "月度计划",
+    "planQuarterly": "季度计划",
+    "planYearly": "年度计划"
   }
 }
 

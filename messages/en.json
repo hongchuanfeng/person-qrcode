@@ -8,7 +8,13 @@
     "copyright": "Copyright",
     "subscribe": "Subscribe",
     "batch": "Batch Generate",
-    "chdaoai": "chdaoai"
+    "chdaoai": "chdaoai",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signInWithGoogle": "Sign in with Google",
+    "welcome": "Welcome",
+    "loading": "Loading...",
+    "membership": "Membership"
   },
   "home": {
     "title": "Personalized QR Code Generator",
@@ -329,7 +335,7 @@
       "yearly": {
         "title": "Yearly Plan",
         "subtitle": "Save more with an annual subscription",
-        "priceLabel": "$99.9 / year",
+        "priceLabel": "$69.9 / year",
         "savings": "Save 16% compared to monthly billing."
       }
     }
@@ -355,7 +361,10 @@
       "invalidFormat": "Invalid file format. Please upload CSV or Excel file.",
       "emptyFile": "The file is empty or has no data.",
       "parseError": "Error parsing file. Please check the file format.",
-      "generateError": "Error generating QR codes. Please try again."
+      "generateError": "Error generating QR codes. Please try again.",
+      "loginRequired": "Please log in to generate QR codes. Redirecting to login...",
+      "subscriptionRequired": "A subscription is required to use batch generation. Please subscribe to a plan first.",
+      "subscriptionCheckFailed": "Failed to check subscription status. Please try again."
     },
     "success": {
       "generated": "Successfully generated {count} QR codes",
@@ -370,6 +379,32 @@
     "bgColor": "Background Color",
     "centerImage": "Center Image (Optional)",
     "removeImage": "Remove Image"
+  },
+  "membership": {
+    "title": "My Membership",
+    "description": "View your membership information and subscription history",
+    "loading": "Loading membership information...",
+    "loginRequired": "Please log in to view your membership information.",
+    "goHome": "Go to Home",
+    "retry": "Retry",
+    "userInfo": "User Information",
+    "email": "Email",
+    "verified": "Verified",
+    "activeSubscription": "Active Subscription",
+    "noActiveSubscription": "No Active Subscription",
+    "subscribePrompt": "You don't have an active subscription. Subscribe to a plan to access batch generation features.",
+    "subscribeNow": "Subscribe Now",
+    "subscriptionHistory": "Subscription History",
+    "planType": "Plan Type",
+    "startDate": "Start Date",
+    "expiryDate": "Expiry Date",
+    "purchasedDate": "Purchased Date",
+    "productId": "Product ID",
+    "statusActive": "Active",
+    "statusExpired": "Expired",
+    "planMonthly": "Monthly Plan",
+    "planQuarterly": "Quarterly Plan",
+    "planYearly": "Yearly Plan"
   }
 }
 

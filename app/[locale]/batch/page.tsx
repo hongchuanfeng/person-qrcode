@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useRef, useTransition } from 'react';
+import { useState, useRef, useTransition, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { useAuth } from '@/contexts/AuthContext';
 import QRCode from 'qrcode';
 import * as XLSX from 'xlsx';
 import JSZip from 'jszip';
@@ -32,6 +33,11 @@ export default function BatchPage() {
   const [selectedPlan, setSelectedPlan] = useState<PlanKey>('monthly');
   const [subscribeError, setSubscribeError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  
+  // Auth state
+  const { user, loading: authLoading, signInWithGoogle } = useAuth();
+  const [isSubscribed, setIsSubscribed] = useState<boolean | null>(null);
+  const [checkingSubscription, setCheckingSubscription] = useState(false);
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files?.[0];
@@ -124,9 +130,70 @@ export default function BatchPage() {
     setIsProcessing(false);
   };
 
+  // Check subscription status
+  useEffect(() => {
+    const checkSubscription = async () => {
+      if (!user) {
+        setIsSubscribed(false);
+        return;
+      }
+
+      setCheckingSubscription(true);
+      try {
+        const response = await fetch('/api/subscriptions/check');
+        const result = await response.json();
+        setIsSubscribed(result.subscribed || false);
+      } catch (error) {
+        console.error('Error checking subscription:', error);
+        setIsSubscribed(false);
+      } finally {
+        setCheckingSubscription(false);
+      }
+    };
+
+    if (!authLoading) {
+      checkSubscription();
+    }
+  }, [user, authLoading]);
+
   const generateQRCodes = async () => {
     if (data.length === 0) {
       setError(t('error.noFile'));
+      return;
+    }
+
+    // Check if user is logged in
+    if (!user) {
+      setError(t('error.loginRequired'));
+      // Optionally redirect to login
+      setTimeout(() => {
+        signInWithGoogle();
+      }, 2000);
+      return;
+    }
+
+    // Check subscription status
+    if (isSubscribed === null) {
+      setCheckingSubscription(true);
+      try {
+        const response = await fetch('/api/subscriptions/check');
+        const result = await response.json();
+        setIsSubscribed(result.subscribed || false);
+        
+        if (!result.subscribed) {
+          setError(t('error.subscriptionRequired'));
+          return;
+        }
+      } catch (error) {
+        console.error('Error checking subscription:', error);
+        setError(t('error.subscriptionCheckFailed'));
+        setCheckingSubscription(false);
+        return;
+      } finally {
+        setCheckingSubscription(false);
+      }
+    } else if (!isSubscribed) {
+      setError(t('error.subscriptionRequired'));
       return;
     }
 
@@ -324,6 +391,20 @@ export default function BatchPage() {
     setSubscribeError(null);
     startTransition(async () => {
       try {
+        // Get product ID for the selected plan
+        const PRODUCT_IDS: Record<PlanKey, string> = {
+          monthly: 'prod_4L6YdpnlJEdRjzPg9OjH8Z',
+          quarterly: 'prod_6MCeuAFjzFqFZduAn74Ew7',
+          yearly: 'prod_6LKkd6OJ8pLCesUdoVNV9I'
+        };
+
+        const productId = PRODUCT_IDS[selectedPlan];
+        
+        // Save product ID to session storage for success page
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('lastProductId', productId);
+        }
+
         const response = await fetch('/api/creem/checkout', {
           method: 'POST',
           headers: {
