@@ -1,0 +1,375 @@
+{
+  "common": {
+    "home": "首页",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "copyright": "版权信息",
+    "subscribe": "订阅",
+    "batch": "批量生成",
+    "chdaoai": "chdaoai"
+  },
+  "home": {
+    "title": "个性化二维码生成器",
+    "subtitle": "使用您自己的图片创建独特的个性化二维码",
+    "description": "几秒钟内生成美观的个性化二维码。上传您的图片，自定义您的二维码，与世界分享。",
+    "features": {
+      "title": "功能",
+      "upload": "上传图片",
+      "uploadDesc": "上传任何图片来个性化您的二维码",
+      "generate": "生成二维码",
+      "generateDesc": "立即创建独特的二维码",
+      "download": "下载和分享",
+      "downloadDesc": "下载、分享或打印您的二维码",
+      "track": "扫描追踪",
+      "trackDesc": "追踪您的二维码扫描和分析"
+    },
+    "howItWorks": {
+      "title": "使用方法",
+      "step1": "输入URL或文本",
+      "step1Desc": "输入您想要编码到二维码中的URL或文本",
+      "step2": "上传您的图片",
+      "step2Desc": "上传徽标或图片以个性化您的二维码",
+      "step3": "自定义和生成",
+      "step3Desc": "自定义颜色和设置，然后生成您的二维码",
+      "step4": "下载和分享",
+      "step4Desc": "下载、打印或分享您的个性化二维码"
+    },
+    "examples": {
+      "title": "案例展示",
+      "business": "名片",
+      "businessDesc": "为您的名片创建二维码",
+      "marketing": "营销材料",
+      "marketingDesc": "用于宣传册、传单和海报",
+      "events": "活动门票",
+      "eventsDesc": "为活动门票生成二维码",
+      "product": "产品包装",
+      "productDesc": "在产品标签和包装上添加二维码",
+      "restaurant": "餐厅菜单",
+      "restaurantDesc": "使用二维码创建无接触数字菜单",
+      "wifi": "WiFi连接",
+      "wifiDesc": "使用二维码快速分享WiFi密码",
+      "payment": "支付链接",
+      "paymentDesc": "生成支付二维码，方便交易",
+      "social": "社交媒体",
+      "socialDesc": "快速链接到您的社交媒体资料",
+      "website": "网站链接",
+      "websiteDesc": "使用精美的二维码分享网站链接",
+      "contact": "联系信息",
+      "contactDesc": "轻松存储和分享联系信息"
+    },
+    "gallery": {
+      "title": "二维码图库",
+      "subtitle": "看看您可以使用我们的个性化二维码生成器创建什么",
+      "example1": {
+        "title": "品牌二维码",
+        "description": "添加您的徽标，让您的二维码脱颖而出"
+      },
+      "example2": {
+        "title": "彩色设计",
+        "description": "自定义颜色以匹配您的品牌形象"
+      },
+      "example3": {
+        "title": "活动二维码",
+        "description": "非常适合门票、邀请函和活动材料"
+      },
+      "example4": {
+        "title": "商务二维码",
+        "description": "用于名片和营销的专业二维码"
+      },
+      "example5": {
+        "title": "创意二维码",
+        "description": "用独特的二维码设计表达您的创意"
+      },
+      "example6": {
+        "title": "现代二维码",
+        "description": "适用于现代应用的当代设计"
+      },
+      "example7": {
+        "title": "Facebook 二维码",
+        "description": "用个性化二维码连接您的 Facebook 页面"
+      },
+      "example8": {
+        "title": "Twitter 二维码",
+        "description": "用自定义二维码分享您的 Twitter 个人资料"
+      },
+      "example9": {
+        "title": "YouTube 二维码",
+        "description": "用品牌二维码推广您的 YouTube 频道"
+      }
+    },
+    "about": {
+      "title": "关于",
+      "subtitle": "免费高质量二维码生成器",
+      "description": "Personalized QRCode 是最受欢迎的免费在线二维码生成器之一，已创建数百万个二维码。高分辨率的二维码和强大的设计选项使其成为网络上最好的免费二维码生成器之一，可用于商业和打印用途。",
+      "features": {
+        "lifetime": {
+          "title": "永久有效，无限扫描",
+          "description": "Personalized QRCode 没有任何限制。所有生成的二维码将永久有效，不会过期，也没有扫描限制，就像您在其他商业二维码生成器中看到的那样。创建的二维码是静态的，所以唯一的限制是您无法再次编辑二维码。"
+        },
+        "logo": {
+          "title": "带Logo的二维码",
+          "description": "在您的二维码上放置自定义品牌。使用 Personalized QRCode，在二维码中添加徽标非常简单直接。二维码仍然可读。每个二维码最多可以有 30% 的错误纠正。这意味着可以移除二维码的 30%（不包括角元素），二维码仍然可以工作。我们可以在二维码上放置一个覆盖最多 30% 的徽标图像。"
+        },
+        "design": {
+          "title": "自定义设计和颜色",
+          "description": "通过我们的设计和颜色选项，让您的二维码看起来真正独特。您可以自定义角元素和二维码主体的形状和形式。您还可以为所有二维码元素设置自己的颜色。为二维码主体添加渐变色，使其真正脱颖而出。有吸引力的二维码可以增加扫描次数。"
+        },
+        "print": {
+          "title": "用于打印的高分辨率二维码",
+          "description": "Personalized QRCode 提供具有高分辨率的打印质量二维码。创建二维码时，将像素大小设置为最高分辨率，以创建打印质量的 .png 文件。您还可以下载矢量格式，如 .svg、.eps、.pdf，以获得最佳质量。我们推荐 .svg 格式，因为它包含所有设计设置，并为您提供完美的打印格式，可用于大多数矢量图形软件。"
+        },
+        "vector": {
+          "title": "二维码矢量格式",
+          "description": "大多数免费二维码制作器只允许创建低分辨率的二维码，并且不提供矢量格式。使用提供的矢量格式以巨大的分辨率打印二维码而不会失去质量。我们推荐 .svg 格式进行进一步编辑。提供的 .pdf 和 .eps 格式仅支持经典二维码，没有设计和徽标选项。"
+        },
+        "commercial": {
+          "title": "免费用于商业用途",
+          "description": "所有生成的二维码都是 100% 免费的，可以用于任何您想要的用途。这包括所有商业目的。"
+        }
+      }
+    },
+    "cta": {
+      "title": "准备创建您的二维码了吗？",
+      "button": "开始使用"
+    },
+    "getStarted": {
+      "title": "开始使用",
+      "subtitle": "创建您的自定义带Logo二维码",
+      "step1": {
+        "title": "设置二维码内容",
+        "description": "在顶部为您的二维码选择内容类型（URL、文本、电子邮件...）。选择类型后，您将看到所有可用选项。输入扫描二维码时应显示的所有字段。确保您输入的所有内容都正确，因为一旦您的二维码被打印，您就无法更改内容。"
+      },
+      "step2": {
+        "title": "自定义设计",
+        "description": "您想让您的二维码看起来独特吗？设置自定义颜色并替换二维码的标准形状。角落元素和主体可以单独自定义。在二维码中添加徽标。从图库中选择或上传您自己的徽标图像。您也可以从模板图库中的模板之一开始。"
+      },
+      "step3": {
+        "title": "生成二维码",
+        "description": "使用滑块设置二维码的像素分辨率。单击\"创建二维码\"按钮以查看您的二维码预览。请通过使用二维码扫描器扫描预览来确保您的二维码正常工作。如果您想获得具有打印质量的PNG代码，请使用高分辨率设置。"
+      },
+      "step4": {
+        "title": "下载图片",
+        "description": "现在您可以将二维码的图像文件下载为.png,.svg,.jpg矢量图形。如果您想要具有完整设计的矢量格式，请选择.svg。SVG可在Adobe Illustrator或Inkscape等软件中使用。徽标和设计设置目前仅适用于.png和.svg文件。"
+      }
+    }
+  },
+  "about": {
+    "title": "关于我们",
+    "description": "我们致力于提供最好的个性化二维码生成服务。我们的平台让任何人都能轻松创建美观、自定义的二维码，适用于任何用途。",
+    "story": {
+      "title": "我们的故事",
+      "description": "个性化二维码生成器成立于2024年，源于一个简单的想法：让二维码变得美观、可定制且人人都能使用。我们相信二维码不仅应该具有功能性，还应该具有视觉吸引力，反映您的品牌和个性。"
+    },
+    "mission": {
+      "title": "我们的使命",
+      "description": "让每个人都能轻松、美观、功能强大地创建二维码。我们的目标是通过提供无需技术专业知识的用户友好平台，使二维码生成变得大众化。"
+    },
+    "vision": {
+      "title": "我们的愿景",
+      "description": "成为全球领先的个性化二维码生成平台，帮助个人和企业创建令人惊艳的品牌二维码，提升他们的数字形象。"
+    },
+    "values": {
+      "title": "我们的价值观",
+      "value1": {
+        "title": "用户友好的设计",
+        "description": "我们优先考虑简洁和易用性。我们直观的界面确保任何人都能在几分钟内创建专业的二维码。"
+      },
+      "value2": {
+        "title": "高质量的输出",
+        "description": "我们使用先进的算法确保每个二维码都清晰、可扫描，并符合行业标准。"
+      },
+      "value3": {
+        "title": "隐私和安全",
+        "description": "您的数据对我们很重要。我们实施严格的安全措施来保护您的信息并尊重您的隐私。"
+      },
+      "value4": {
+        "title": "创新",
+        "description": "我们根据用户反馈不断改进平台，添加新功能和增强功能。"
+      }
+    },
+    "why": {
+      "title": "为什么选择我们？",
+      "reason1": {
+        "title": "易于使用",
+        "description": "无需技术技能。只需点击几下即可创建专业的二维码。"
+      },
+      "reason2": {
+        "title": "完全可定制",
+        "description": "上传您的徽标，选择颜色，调整大小，让您的二维码独一无二。"
+      },
+      "reason3": {
+        "title": "快速可靠",
+        "description": "使用我们优化的平台即时生成高质量的二维码。"
+      },
+      "reason4": {
+        "title": "免费开始",
+        "description": "使用我们的免费计划创建无限数量的二维码，需要更多功能时再升级。"
+      }
+    },
+    "team": {
+      "title": "我们的团队",
+      "description": "认识个性化二维码背后的优秀团队。我们是一群多样化的开发者、设计师和创新者，致力于创造最佳的二维码生成体验。",
+      "member1": {
+        "name": "Alex Chen",
+        "role": "创始人 & CEO",
+        "bio": "具有10年以上软件开发和数字创新经验的远见领导者。热衷于让技术普及到每个人。"
+      },
+      "member2": {
+        "name": "Sarah Johnson",
+        "role": "首席设计师",
+        "bio": "专注于用户体验和界面设计的创意设计师。致力于创造美观直观的产品。"
+      },
+      "member3": {
+        "name": "Michael Zhang",
+        "role": "高级开发者",
+        "bio": "全栈开发者，精通现代网络技术。确保我们的平台快速、可靠且可扩展。"
+      },
+      "member4": {
+        "name": "Emily Wang",
+        "role": "产品经理",
+        "bio": "专注于用户需求和业务增长的战略产品经理。架起技术与客户满意度之间的桥梁。"
+      }
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "description": "有问题吗？我们很乐意听到您的反馈。与我们的团队取得联系，我们会尽快回复。",
+    "email": {
+      "title": "发送邮件",
+      "description": "给我们发送电子邮件，我们将在24小时内回复您。",
+      "general": "一般咨询",
+      "support": "技术支持",
+      "business": "商业合作"
+    },
+    "support": {
+      "title": "支持",
+      "description": "需要帮助吗？我们的支持团队随时为您提供帮助，解答任何问题。",
+      "hours": "支持时间：周一至周五，上午9:00 - 下午6:00 (UTC)"
+    },
+    "response": {
+      "title": "响应时间",
+      "description": "我们通常在工作日24小时内回复所有咨询。对于紧急事项，请在消息中标记为紧急。"
+    },
+    "social": {
+      "title": "关注我们",
+      "description": "在社交媒体上关注我们，了解最新功能和提示。"
+    },
+    "form": {
+      "title": "给我们留言",
+      "name": "您的姓名",
+      "email": "您的邮箱",
+      "subject": "主题",
+      "message": "消息",
+      "send": "发送消息",
+      "sending": "发送中...",
+      "success": "谢谢！您的消息已成功发送。",
+      "error": "抱歉，发送消息时出错。请重试。"
+    }
+  },
+  "qr": {
+    "urlPlaceholder": "输入URL或文本",
+    "uploadImage": "上传图片",
+    "generate": "生成二维码",
+    "download": "下载",
+    "downloadFormat": "下载格式",
+    "formatPNG": "PNG",
+    "formatJPG": "JPG",
+    "formatSVG": "SVG",
+    "share": "分享",
+    "print": "打印",
+    "edit": "编辑",
+    "delete": "删除",
+    "save": "保存",
+    "scans": "扫描记录",
+    "scansCount": "总扫描次数",
+    "color": "颜色",
+    "backgroundColor": "背景颜色",
+    "size": "大小",
+    "bodyShape": "主体形状",
+    "eyeFrameShape": "定位点外框形状",
+    "eyeBallShape": "定位点内部形状",
+    "shapeSquare": "方形",
+    "shapeRounded": "圆角",
+    "shapeDots": "圆点",
+    "shapeExtraRounded": "超圆角",
+    "shapeClassy": "经典",
+    "shapeClassyRounded": "经典圆角",
+    "shapeDotsRounded": "圆点圆角",
+    "shapeRoundedDots": "圆角圆点",
+    "shapeFlower": "花朵",
+    "shapeStar": "星形",
+    "shapeCircle": "圆形",
+    "shapeDiamond": "菱形",
+    "shapeLeaf": "叶子",
+    "shapeDot": "点"
+  },
+  "subscribe": {
+    "title": "订阅计划",
+    "description": "选择适合您需求的计划",
+    "monthly": "月度计划",
+    "quarterly": "季度计划",
+    "yearly": "年度计划",
+    "checkout": "继续结账",
+    "redirecting": "正在跳转...",
+    "plans": {
+      "monthly": {
+        "title": "月度计划",
+        "subtitle": "最适合试用服务",
+        "priceLabel": "$9.9 / 月",
+        "savings": "每30天计费一次。"
+      },
+      "quarterly": {
+        "title": "季度计划",
+        "subtitle": "一次订阅，享受三个月",
+        "priceLabel": "$19.9 / 季度",
+        "savings": "相比月度计费节省33%。"
+      },
+      "yearly": {
+        "title": "年度计划",
+        "subtitle": "年度订阅更省钱",
+        "priceLabel": "$69.9 / 年",
+        "savings": "相比月度计费节省16%。"
+      }
+    }
+  },
+  "batch": {
+    "title": "批量二维码生成器",
+    "subtitle": "从CSV或Excel文件批量生成多个二维码",
+    "description": "上传包含URL或文本的CSV或Excel文件，我们将为每一行生成二维码。将所有二维码下载为ZIP文件。",
+    "upload": "上传文件",
+    "uploadDesc": "上传CSV或Excel文件。第一列应包含二维码内容（URL、文本等）",
+    "fileFormat": "支持格式：CSV、XLS、XLSX",
+    "downloadTemplate": "下载模板",
+    "downloadTemplateCSV": "下载CSV模板",
+    "downloadTemplateExcel": "下载Excel模板",
+    "templateDesc": "下载模板文件以查看正确格式",
+    "processing": "处理中...",
+    "generate": "生成二维码",
+    "generating": "生成二维码中...",
+    "download": "下载ZIP",
+    "reset": "重置",
+    "error": {
+      "noFile": "请上传文件",
+      "invalidFormat": "无效的文件格式。请上传CSV或Excel文件。",
+      "emptyFile": "文件为空或没有数据。",
+      "parseError": "解析文件时出错。请检查文件格式。",
+      "generateError": "生成二维码时出错。请重试。"
+    },
+    "success": {
+      "generated": "成功生成 {count} 个二维码",
+      "ready": "二维码已准备好下载"
+    },
+    "preview": "预览",
+    "count": "二维码总数：{count}",
+    "selectedFile": "已选择：{fileName}",
+    "moreItems": "还有 {count} 个...",
+    "customize": "自定义二维码",
+    "qrColor": "二维码颜色",
+    "bgColor": "背景颜色",
+    "centerImage": "中心图片（可选）",
+    "removeImage": "移除图片"
+  }
+}
+

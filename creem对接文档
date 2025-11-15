@@ -1,0 +1,13 @@
+有每月9.9美元，product_id=prod_4L6YdpnlJEdRjzPg9OjH8Z，
+每季度19.9美元，product_id=prod_4L6YdpnlJEdRjzPg9OjH8Z，
+每年99.99美元，product_id=prod_4L6YdpnlJEdRjzPg9OjH8Z,三个支付套餐。
+
+const redirectUrl = await axios.post(
+      `https://api.creem.io/v1/checkouts`,
+        {
+          product_id: 'prod_6tW66i0oZM7w1qXReHJrwg',
+        },
+        {
+          headers: { "x-api-key": `creem_123456789` },
+        },
+    );

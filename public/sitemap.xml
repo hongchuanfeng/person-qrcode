@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage - English -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en"/>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Homepage - Chinese -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/zh</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en"/>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Batch Generate - English -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/en/batch</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/batch"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/batch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/batch"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Batch Generate - Chinese -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/zh/batch</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/batch"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/batch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/batch"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- About Us - English -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/about"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- About Us - Chinese -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/zh/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/about"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Contact Us - English -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/contact"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Contact Us - Chinese -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/zh/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/contact"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Subscribe - English -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/en/subscribe</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/subscribe"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/subscribe"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/subscribe"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Subscribe - Chinese -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/zh/subscribe</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/subscribe"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/subscribe"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/subscribe"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Privacy Policy - English -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/en/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/privacy"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Privacy Policy - Chinese -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/zh/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/privacy"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Terms of Service - English -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/en/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/terms"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Terms of Service - Chinese -->
+  <url>
+    <loc>https://qrcode.chdaoai.com/zh/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qrcode.chdaoai.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://qrcode.chdaoai.com/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qrcode.chdaoai.com/en/terms"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>
+

@@ -1,0 +1,375 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "copyright": "Copyright",
+    "subscribe": "Subscribe",
+    "batch": "Batch Generate",
+    "chdaoai": "chdaoai"
+  },
+  "home": {
+    "title": "Personalized QR Code Generator",
+    "subtitle": "Create unique, customized QR codes with your own images",
+    "description": "Generate beautiful, personalized QR codes in seconds. Upload your image, customize your QR code, and share it with the world.",
+    "features": {
+      "title": "Features",
+      "upload": "Upload Image",
+      "uploadDesc": "Upload any image to personalize your QR code",
+      "generate": "Generate QR Code",
+      "generateDesc": "Create unique QR codes instantly",
+      "download": "Download & Share",
+      "downloadDesc": "Download, share, or print your QR codes",
+      "track": "Scan Tracking",
+      "trackDesc": "Track scans and analytics for your QR codes"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": "Enter URL or Text",
+      "step1Desc": "Enter the URL or text you want to encode in the QR code",
+      "step2": "Upload Your Image",
+      "step2Desc": "Upload a logo or image to personalize your QR code",
+      "step3": "Customize & Generate",
+      "step3Desc": "Customize colors and settings, then generate your QR code",
+      "step4": "Download & Share",
+      "step4Desc": "Download, print, or share your personalized QR code"
+    },
+    "examples": {
+      "title": "Examples",
+      "business": "Business Cards",
+      "businessDesc": "Create QR codes for your business cards",
+      "marketing": "Marketing Materials",
+      "marketingDesc": "Use in brochures, flyers, and posters",
+      "events": "Event Tickets",
+      "eventsDesc": "Generate QR codes for event tickets",
+      "product": "Product Packaging",
+      "productDesc": "Add QR codes to product labels and packaging",
+      "restaurant": "Restaurant Menus",
+      "restaurantDesc": "Create contactless digital menus with QR codes",
+      "wifi": "WiFi Access",
+      "wifiDesc": "Share WiFi credentials quickly with QR codes",
+      "payment": "Payment Links",
+      "paymentDesc": "Generate payment QR codes for easy transactions",
+      "social": "Social Media",
+      "socialDesc": "Link to your social media profiles instantly",
+      "website": "Website URLs",
+      "websiteDesc": "Share website links with beautiful QR codes",
+      "contact": "Contact Info",
+      "contactDesc": "Store and share contact information easily"
+    },
+    "gallery": {
+      "title": "QR Code Gallery",
+      "subtitle": "See what you can create with our personalized QR code generator",
+      "example1": {
+        "title": "Branded QR Code",
+        "description": "Add your logo to make your QR code stand out"
+      },
+      "example2": {
+        "title": "Colorful Design",
+        "description": "Customize colors to match your brand identity"
+      },
+      "example3": {
+        "title": "Event QR Code",
+        "description": "Perfect for tickets, invitations, and event materials"
+      },
+      "example4": {
+        "title": "Business QR Code",
+        "description": "Professional QR codes for business cards and marketing"
+      },
+      "example5": {
+        "title": "Creative QR Code",
+        "description": "Express your creativity with unique QR code designs"
+      },
+      "example6": {
+        "title": "Modern QR Code",
+        "description": "Contemporary designs for modern applications"
+      },
+      "example7": {
+        "title": "Facebook QR Code",
+        "description": "Connect your Facebook page with a personalized QR code"
+      },
+      "example8": {
+        "title": "Twitter QR Code",
+        "description": "Share your Twitter profile with a custom QR code"
+      },
+      "example9": {
+        "title": "YouTube QR Code",
+        "description": "Promote your YouTube channel with a branded QR code"
+      }
+    },
+    "about": {
+      "title": "About",
+      "subtitle": "The Free QR Code Generator for High Quality QR Codes",
+      "description": "Personalized QRCode is one of the most popular free online qr code generators with millions of already created QR codes. The high resolution of the QR codes and the powerful design options make it one of the best free QR code generators on the web that can be used for commercial and print purposes.",
+      "features": {
+        "lifetime": {
+          "title": "Endless lifetime with unlimited scans",
+          "description": "Personalized QRCode also has no limitations. All generated QR codes will work forever, do not expire and have no scanning limits like you see at other commercial QR code generators. The created QR codes are static so the only limitation is that you can't edit the QR code again."
+        },
+        "logo": {
+          "title": "QR Codes with Logo",
+          "description": "Put a custom brand on your QR code. With Personalized QRCode it is very simple and straightforward to add a logo to your QR Code. The QR codes are still readable. Every QR code can have an error correction up to 30%. This means 30% of the QR code (excluding the corner elements) can be removed and the QR code is still working. We can put a logo image on the QR code that covers up to 30%."
+        },
+        "design": {
+          "title": "Custom Design and Colors",
+          "description": "Make your QR code look really unique with our design and color options. You can customize the shape and form of the corner elements and the body of the QR code. You can also set your own colors for all QR code elements. Add a gradient color to the QR code body and make it really stand out. Attractive QR codes can increase the amount of scans."
+        },
+        "print": {
+          "title": "High resolution QR Codes for Print",
+          "description": "Personalized QRCode offers print quality QR codes with high resolutions. When creating your QR code set the pixel size to the highest resolution to create .png files in print quality. You can also download vector formats like .svg, .eps, .pdf for best possible quality. We recommend the .svg format because it includes all design settings and gives you the perfect print format that can be used with most vector graphic software."
+        },
+        "vector": {
+          "title": "QR Code Vector Formats",
+          "description": "Most free QR code makers only allow creating QR codes in low resolutions and do not offer vector formats. Use the offered vector formats to print QR Codes in huge resolutions without losing quality. We recommend the .svg format for further editing. The offered .pdf and .eps formats only support classic QR codes without the design and logo options."
+        },
+        "commercial": {
+          "title": "Free for commercial usage",
+          "description": "All generated QR Codes are 100% free and can be used for whatever you want. This includes all commercial purposes."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Create Your QR Code?",
+      "button": "Get Started"
+    },
+    "getStarted": {
+      "title": "Get Started",
+      "subtitle": "Create your custom QR Code with Logo",
+      "step1": {
+        "title": "Set QR Content",
+        "description": "Select a content type at the top for your QR code (URL, Text, Email...). After selecting your type you will see all available options. Enter all fields that should appear when scanning your QR code. Make sure everything you enter is correct because you can't change the content once your QR code is printed."
+      },
+      "step2": {
+        "title": "Customize Design",
+        "description": "You want your QR code to look unique? Set a custom color and replace the standard shapes of your QR code. The corner elements and the body can be customized individually. Add a logo to your QR code. Select it from the gallery or upload your own logo image. You can also start with one of the templates from the template gallery."
+      },
+      "step3": {
+        "title": "Generate QR Code",
+        "description": "Set the pixel resolution of your QR code with the slider. Click the \"Create QR Code\"-button to see your qr code preview. Please make sure your QR code is working correctly by scanning the preview with your QR Code scanner. Use a high resolution setting if you want to get a png code with print quality."
+      },
+      "step4": {
+        "title": "Download Image",
+        "description": "Now you can download the image files for your QR code as .png or .svg, .jpg vector graphic. If you want a vector format with the complete design please choose .svg. SVG is working in software like Adobe Illustrator or Inkscape. The logo and design settings currently only work for .png and .svg files."
+      }
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "description": "We are dedicated to providing the best personalized QR code generation service. Our platform makes it easy for anyone to create beautiful, customized QR codes for any purpose.",
+    "story": {
+      "title": "Our Story",
+      "description": "Founded in 2024, Personalized QR Code was born from a simple idea: making QR codes beautiful, customizable, and accessible to everyone. We believe that QR codes should not only be functional but also visually appealing, reflecting your brand and personality."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To make QR code creation accessible, beautiful, and functional for everyone. We aim to democratize QR code generation by providing a user-friendly platform that requires no technical expertise."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To become the leading platform for personalized QR code generation worldwide, empowering individuals and businesses to create stunning, branded QR codes that enhance their digital presence."
+    },
+    "values": {
+      "title": "Our Values",
+      "value1": {
+        "title": "User-Friendly Design",
+        "description": "We prioritize simplicity and ease of use. Our intuitive interface ensures that anyone can create professional QR codes in minutes."
+      },
+      "value2": {
+        "title": "High-Quality Output",
+        "description": "We use advanced algorithms to ensure every QR code is crisp, scannable, and meets industry standards."
+      },
+      "value3": {
+        "title": "Privacy and Security",
+        "description": "Your data is important to us. We implement strict security measures to protect your information and respect your privacy."
+      },
+      "value4": {
+        "title": "Innovation",
+        "description": "We continuously improve our platform with new features and enhancements based on user feedback."
+      }
+    },
+    "why": {
+      "title": "Why Choose Us?",
+      "reason1": {
+        "title": "Easy to Use",
+        "description": "No technical skills required. Create professional QR codes in just a few clicks."
+      },
+      "reason2": {
+        "title": "Fully Customizable",
+        "description": "Upload your logo, choose colors, adjust size, and make your QR code uniquely yours."
+      },
+      "reason3": {
+        "title": "Fast & Reliable",
+        "description": "Generate high-quality QR codes instantly with our optimized platform."
+      },
+      "reason4": {
+        "title": "Free to Start",
+        "description": "Create unlimited QR codes with our free plan, upgrade when you need more features."
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "Meet the talented individuals behind Personalized QR Code. We're a diverse group of developers, designers, and innovators passionate about creating the best QR code generation experience.",
+      "member1": {
+        "name": "Alex Chen",
+        "role": "Founder & CEO",
+        "bio": "Visionary leader with 10+ years of experience in software development and digital innovation. Passionate about making technology accessible to everyone."
+      },
+      "member2": {
+        "name": "Sarah Johnson",
+        "role": "Lead Designer",
+        "bio": "Creative designer specializing in user experience and interface design. Dedicated to creating beautiful and intuitive products."
+      },
+      "member3": {
+        "name": "Michael Zhang",
+        "role": "Senior Developer",
+        "bio": "Full-stack developer with expertise in modern web technologies. Ensures our platform is fast, reliable, and scalable."
+      },
+      "member4": {
+        "name": "Emily Wang",
+        "role": "Product Manager",
+        "bio": "Strategic product manager focused on user needs and business growth. Bridges the gap between technology and customer satisfaction."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Have questions? We'd love to hear from you. Get in touch with our team and we'll respond as soon as possible.",
+    "email": {
+      "title": "Email Us",
+      "description": "Send us an email and we'll get back to you within 24 hours.",
+      "general": "General Inquiries",
+      "support": "Technical Support",
+      "business": "Business Partnerships"
+    },
+    "support": {
+      "title": "Support",
+      "description": "Need help? Our support team is here to assist you with any questions or issues.",
+      "hours": "Support Hours: Monday - Friday, 9:00 AM - 6:00 PM (UTC)"
+    },
+    "response": {
+      "title": "Response Time",
+      "description": "We typically respond to all inquiries within 24 hours during business days. For urgent matters, please mark your message as urgent."
+    },
+    "social": {
+      "title": "Connect With Us",
+      "description": "Follow us on social media to stay updated with the latest features and tips."
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "name": "Your Name",
+      "email": "Your Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Thank you! Your message has been sent successfully.",
+      "error": "Sorry, there was an error sending your message. Please try again."
+    }
+  },
+  "qr": {
+    "urlPlaceholder": "Enter URL or text",
+    "uploadImage": "Upload Image",
+    "generate": "Generate QR Code",
+    "download": "Download",
+    "downloadFormat": "Download Format",
+    "formatPNG": "PNG",
+    "formatJPG": "JPG",
+    "formatSVG": "SVG",
+    "share": "Share",
+    "print": "Print",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "scans": "Scan Records",
+    "scansCount": "Total Scans",
+    "color": "Color",
+    "backgroundColor": "Background Color",
+    "size": "Size",
+    "bodyShape": "Body Shape",
+    "eyeFrameShape": "Eye Frame Shape",
+    "eyeBallShape": "Eye Ball Shape",
+    "shapeSquare": "Square",
+    "shapeRounded": "Rounded",
+    "shapeDots": "Dots",
+    "shapeExtraRounded": "Extra Rounded",
+    "shapeClassy": "Classy",
+    "shapeClassyRounded": "Classy Rounded",
+    "shapeDotsRounded": "Dots Rounded",
+    "shapeRoundedDots": "Rounded Dots",
+    "shapeFlower": "Flower",
+    "shapeStar": "Star",
+    "shapeCircle": "Circle",
+    "shapeDiamond": "Diamond",
+    "shapeLeaf": "Leaf",
+    "shapeDot": "Dot"
+  },
+  "subscribe": {
+    "title": "Subscription Plans",
+    "description": "Choose the plan that fits your needs",
+    "monthly": "Monthly Plan",
+    "quarterly": "Quarterly Plan",
+    "yearly": "Yearly Plan",
+    "checkout": "Continue to Checkout",
+    "redirecting": "Redirecting...",
+    "plans": {
+      "monthly": {
+        "title": "Monthly Plan",
+        "subtitle": "Best for trying out the service",
+        "priceLabel": "$9.9 / month",
+        "savings": "Billed every 30 days."
+      },
+      "quarterly": {
+        "title": "Quarterly Plan",
+        "subtitle": "Commit once, enjoy three months",
+        "priceLabel": "$19.9 / quarter",
+        "savings": "Save 33% compared to monthly billing."
+      },
+      "yearly": {
+        "title": "Yearly Plan",
+        "subtitle": "Save more with an annual subscription",
+        "priceLabel": "$99.9 / year",
+        "savings": "Save 16% compared to monthly billing."
+      }
+    }
+  },
+  "batch": {
+    "title": "Batch QR Code Generator",
+    "subtitle": "Generate multiple QR codes at once from CSV or Excel files",
+    "description": "Upload a CSV or Excel file containing URLs or text, and we'll generate QR codes for each row. Download all QR codes as a ZIP file.",
+    "upload": "Upload File",
+    "uploadDesc": "Upload a CSV or Excel file. The first column should contain the content for QR codes (URLs, text, etc.)",
+    "fileFormat": "Supported formats: CSV, XLS, XLSX",
+    "downloadTemplate": "Download Template",
+    "downloadTemplateCSV": "Download CSV Template",
+    "downloadTemplateExcel": "Download Excel Template",
+    "templateDesc": "Download a template file to see the correct format",
+    "processing": "Processing...",
+    "generate": "Generate QR Codes",
+    "generating": "Generating QR codes...",
+    "download": "Download ZIP",
+    "reset": "Reset",
+    "error": {
+      "noFile": "Please upload a file",
+      "invalidFormat": "Invalid file format. Please upload CSV or Excel file.",
+      "emptyFile": "The file is empty or has no data.",
+      "parseError": "Error parsing file. Please check the file format.",
+      "generateError": "Error generating QR codes. Please try again."
+    },
+    "success": {
+      "generated": "Successfully generated {count} QR codes",
+      "ready": "QR codes are ready for download"
+    },
+    "preview": "Preview",
+    "count": "Total QR Codes: {count}",
+    "selectedFile": "Selected: {fileName}",
+    "moreItems": "And {count} more...",
+    "customize": "Customize QR Codes",
+    "qrColor": "QR Code Color",
+    "bgColor": "Background Color",
+    "centerImage": "Center Image (Optional)",
+    "removeImage": "Remove Image"
+  }
+}
+
