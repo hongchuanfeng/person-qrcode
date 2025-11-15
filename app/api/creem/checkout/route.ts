@@ -51,7 +51,7 @@ export async function POST(req: Request) {
   const origin =
     req.headers.get("origin") ??
     process.env.APP_BASE_URL ??
-    "http://localhost:3000";
+    "https://qrcode.chdaoai.com";
 
   const selectedPlan = PLANS[planId];
 
