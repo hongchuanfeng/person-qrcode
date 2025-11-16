@@ -131,8 +131,8 @@
           "description": "Most free QR code makers only allow creating QR codes in low resolutions and do not offer vector formats. Use the offered vector formats to print QR Codes in huge resolutions without losing quality. We recommend the .svg format for further editing. The offered .pdf and .eps formats only support classic QR codes without the design and logo options."
         },
         "commercial": {
-          "title": "Free for commercial usage",
-          "description": "All generated QR Codes are 100% free and can be used for whatever you want. This includes all commercial purposes."
+          "title": "Single QR code free/bulk requires membership service",
+          "description": "Single QR code generation is 100% free, batch generation requires membership and can be used for any purpose you want. This includes all commercial purposes. Batch generation of QR codes requires membership and can be downloaded as a ZIP file."
         }
       }
     },
@@ -211,7 +211,7 @@
       },
       "reason4": {
         "title": "Free to Start",
-        "description": "Create unlimited QR codes with our free plan, upgrade when you need more features."
+        "description": "Create QR codes with our free plan, upgrade when you need more features."
       }
     },
     "team": {
@@ -319,6 +319,7 @@
     "yearly": "Yearly Plan",
     "checkout": "Continue to Checkout",
     "redirecting": "Redirecting...",
+    "loginRequired": "Please log in to subscribe. Redirecting to login...",
     "plans": {
       "monthly": {
         "title": "Monthly Plan",

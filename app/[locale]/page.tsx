@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import QRCodeGenerator from '@/components/QRCodeGenerator';
+import SubscriptionPlans from '@/components/SubscriptionPlans';
 import { Metadata } from 'next';
 
 export async function generateMetadata({
@@ -275,6 +276,8 @@ export default async function HomePage({
           </div>
         </div>
       </section>
+
+      <SubscriptionPlans />
     </div>
   );
 }
