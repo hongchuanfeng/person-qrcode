@@ -110,8 +110,17 @@ export default function MembershipPage() {
       <div className="page-content">
         <section className="page-hero">
           <h1>{t('title')}</h1>
-          <p>{t('loginRequired')}</p>
-          <Link href={`/${locale}`} className="btn btn-primary" style={{ marginTop: '1rem' }}>
+          <p style={{ marginBottom: '2rem' }}>{t('loginRequired')}</p>
+          <Link 
+            href={`/${locale}`} 
+            className="btn btn-primary" 
+            style={{ 
+              marginTop: '2rem',
+              display: 'inline-block',
+              whiteSpace: 'nowrap',
+              textAlign: 'center'
+            }}
+          >
             {t('goHome')}
           </Link>
         </section>
