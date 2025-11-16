@@ -103,30 +103,47 @@ export default function CustomQRCode({
               const finderX = finderPos.col * moduleSize + padding;
               const finderY = finderPos.row * moduleSize + padding;
               
-              // Draw standard finder pattern structure (7x7 outer, 3x3 inner, 1x1 center)
-              // Outer 7x7 frame
-              const outerRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-              outerRect.setAttribute('x', String(finderX));
-              outerRect.setAttribute('y', String(finderY));
-              outerRect.setAttribute('width', String(moduleSize * 7));
-              outerRect.setAttribute('height', String(moduleSize * 7));
-              outerRect.setAttribute('fill', fgColor);
-              svg.appendChild(outerRect);
-              
-              // Inner 3x3 ball (background color)
+              // Draw finder pattern with custom shapes
+              const finderSize = 7 * moduleSize;
               const innerX = finderX + moduleSize * 2;
               const innerY = finderY + moduleSize * 2;
-              const innerRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-              innerRect.setAttribute('x', String(innerX));
-              innerRect.setAttribute('y', String(innerY));
-              innerRect.setAttribute('width', String(moduleSize * 3));
-              innerRect.setAttribute('height', String(moduleSize * 3));
-              innerRect.setAttribute('fill', bgColor);
-              svg.appendChild(innerRect);
-              
-              // Center 1x1 dot (foreground color)
+              const innerSize = moduleSize * 3;
               const centerX = finderX + moduleSize * 3;
               const centerY = finderY + moduleSize * 3;
+              
+              // Draw eye frame (outer 7x7)
+              if (eyeFrameShape === 'square') {
+                const outerRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                outerRect.setAttribute('x', String(finderX));
+                outerRect.setAttribute('y', String(finderY));
+                outerRect.setAttribute('width', String(finderSize));
+                outerRect.setAttribute('height', String(finderSize));
+                outerRect.setAttribute('fill', fgColor);
+                svg.appendChild(outerRect);
+              } else {
+                const framePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                framePath.setAttribute('fill', fgColor);
+                drawEyeFrame(framePath, finderX, finderY, finderSize, eyeFrameShape, true);
+                svg.appendChild(framePath);
+              }
+              
+              // Draw eye ball (inner 3x3)
+              if (eyeBallShape === 'square') {
+                const innerRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                innerRect.setAttribute('x', String(innerX));
+                innerRect.setAttribute('y', String(innerY));
+                innerRect.setAttribute('width', String(innerSize));
+                innerRect.setAttribute('height', String(innerSize));
+                innerRect.setAttribute('fill', bgColor);
+                svg.appendChild(innerRect);
+              } else {
+                const ballPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                ballPath.setAttribute('fill', bgColor);
+                drawEyeBall(ballPath, innerX, innerY, innerSize, eyeBallShape, true);
+                svg.appendChild(ballPath);
+              }
+              
+              // Center 1x1 dot (always square for scannability)
               const centerRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
               centerRect.setAttribute('x', String(centerX));
               centerRect.setAttribute('y', String(centerY));
@@ -134,52 +151,24 @@ export default function CustomQRCode({
               centerRect.setAttribute('height', String(moduleSize));
               centerRect.setAttribute('fill', fgColor);
               svg.appendChild(centerRect);
-              
-              // Apply custom shape decoration on top (visible but doesn't affect scanning)
-              if (eyeFrameShape !== 'square' || eyeBallShape !== 'square') {
-                const decorationGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                decorationGroup.setAttribute('opacity', '0.75'); // More visible decoration
-                
-                const finderSize = 7 * moduleSize;
-                
-                // Draw eye frame decoration with fill for better visibility
-                if (eyeFrameShape !== 'square') {
-                  const framePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                  framePath.setAttribute('fill', fgColor);
-                  drawEyeFrame(framePath, finderX, finderY, finderSize, eyeFrameShape, true);
-                  decorationGroup.appendChild(framePath);
-                }
-                
-                // Draw eye ball decoration with fill for better visibility
-                if (eyeBallShape !== 'square') {
-                  const ballSize = moduleSize * 3;
-                  const ballPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                  ballPath.setAttribute('fill', bgColor);
-                  drawEyeBall(ballPath, innerX, innerY, ballSize, eyeBallShape, true);
-                  decorationGroup.appendChild(ballPath);
-                }
-                
-                svg.appendChild(decorationGroup);
-              }
             }
             // Skip individual module drawing for finder patterns
             continue;
           } else if (isModule) {
-            // Always draw standard squares for maximum scannability
-            // Custom shapes are applied as decoration only
-            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-            rect.setAttribute('x', String(x));
-            rect.setAttribute('y', String(y));
-            rect.setAttribute('width', String(moduleSize));
-            rect.setAttribute('height', String(moduleSize));
-            rect.setAttribute('fill', fgColor);
-            svg.appendChild(rect);
-            
-            // Apply custom shape as decoration (only if not square)
-            if (bodyShape !== 'square') {
+            // Draw custom shape directly (replacing standard square)
+            if (bodyShape === 'square') {
+              // Draw standard square
+              const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+              rect.setAttribute('x', String(x));
+              rect.setAttribute('y', String(y));
+              rect.setAttribute('width', String(moduleSize));
+              rect.setAttribute('height', String(moduleSize));
+              rect.setAttribute('fill', fgColor);
+              svg.appendChild(rect);
+            } else {
+              // Draw custom shape
               const bodyPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
               bodyPath.setAttribute('fill', fgColor);
-              bodyPath.setAttribute('opacity', '0.95'); // High opacity for visible decoration
               drawBodyShape(bodyPath, x, y, moduleSize, bodyShape, true);
               svg.appendChild(bodyPath);
             }

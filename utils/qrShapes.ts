@@ -1,6 +1,6 @@
 // QR Code shape definitions
 
-export type BodyShape = 'square' | 'rounded' | 'dots' | 'extra-rounded' | 'classy' | 'classy-rounded' | 'dots-rounded' | 'rounded-dots' | 'flower' | 'star' | 'pattern1' | 'pattern2' | 'pattern3' | 'pattern4' | 'pattern5' | 'pattern6' | 'pattern7' | 'pattern8';
+export type BodyShape = 'square' | 'rounded' | 'extra-rounded' | 'classy' | 'classy-rounded' | 'flower' | 'pattern1' | 'pattern2' | 'pattern3' | 'pattern4' | 'pattern5' | 'pattern6' | 'pattern7' | 'pattern8';
 
 export type EyeFrameShape = 'square' | 'rounded' | 'circle' | 'rounded-single' | 'rounded-double' | 'square-single' | 'square-double' | 'leaf' | 'leaf-rounded' | 'diamond' | 'diamond-rounded';
 
@@ -30,9 +30,6 @@ export function drawBodyShape(
         const r1 = size * 0.2;
         path = `M ${x + r1} ${y} L ${x + size - r1} ${y} Q ${x + size} ${y} ${x + size} ${y + r1} L ${x + size} ${y + size - r1} Q ${x + size} ${y + size} ${x + size - r1} ${y + size} L ${x + r1} ${y + size} Q ${x} ${y + size} ${x} ${y + size - r1} L ${x} ${y + r1} Q ${x} ${y} ${x + r1} ${y} Z`;
         break;
-      case 'dots':
-        path = `M ${centerX} ${centerY} m -${halfSize * 0.3} 0 a ${halfSize * 0.3} ${halfSize * 0.3} 0 1 0 ${size * 0.3} 0 a ${halfSize * 0.3} ${halfSize * 0.3} 0 1 0 -${size * 0.3} 0`;
-        break;
       case 'extra-rounded':
         const r2 = size * 0.4;
         path = `M ${x + r2} ${y} L ${x + size - r2} ${y} Q ${x + size} ${y} ${x + size} ${y + r2} L ${x + size} ${y + size - r2} Q ${x + size} ${y + size} ${x + size - r2} ${y + size} L ${x + r2} ${y + size} Q ${x} ${y + size} ${x} ${y + size - r2} L ${x} ${y + r2} Q ${x} ${y} ${x + r2} ${y} Z`;
@@ -43,14 +40,6 @@ export function drawBodyShape(
       case 'classy-rounded':
         const r3 = size * 0.15;
         path = `M ${x + r3} ${y} L ${x + size - r3} ${y} Q ${x + size} ${y} ${x + size} ${y + r3} L ${x + size} ${y + size * 0.7} L ${x + size * 0.7} ${y + size} L ${x + r3} ${y + size} Q ${x} ${y + size} ${x} ${y + size - r3} L ${x} ${y + r3} Q ${x} ${y} ${x + r3} ${y} Z`;
-        break;
-      case 'dots-rounded':
-        const r4 = size * 0.25;
-        path = `M ${centerX} ${centerY} m -${r4} 0 a ${r4} ${r4} 0 1 0 ${r4 * 2} 0 a ${r4} ${r4} 0 1 0 -${r4 * 2} 0`;
-        break;
-      case 'rounded-dots':
-        const r5 = size * 0.3;
-        path = `M ${centerX} ${centerY} m -${r5} 0 a ${r5} ${r5} 0 1 0 ${r5 * 2} 0 a ${r5} ${r5} 0 1 0 -${r5 * 2} 0`;
         break;
       case 'flower':
         const petals = 8;
@@ -65,21 +54,7 @@ export function drawBodyShape(
         }
         path += ' Z';
         break;
-      case 'star':
-        const points = 5;
-        // Use larger radius to ensure complete coverage of the module area
-        const outerRadius = halfSize * 0.95;
-        const innerRadius = halfSize * 0.4;
-        path = `M ${centerX + outerRadius} ${centerY}`;
-        for (let i = 0; i < points * 2; i++) {
-          const angle = (i * Math.PI) / points;
-          const r = i % 2 === 0 ? outerRadius : innerRadius;
-          const px = centerX + r * Math.cos(angle - Math.PI / 2);
-          const py = centerY + r * Math.sin(angle - Math.PI / 2);
-          path += ` L ${px} ${py}`;
-        }
-        path += ' Z';
-        break;
+     
       default:
         path = `M ${x} ${y} L ${x + size} ${y} L ${x + size} ${y + size} L ${x} ${y + size} Z`;
     }
@@ -99,9 +74,6 @@ export function drawBodyShape(
       const r1 = size * 0.2;
       ctx.roundRect(x, y, size, size, r1);
       break;
-    case 'dots':
-      ctx.arc(centerX, centerY, halfSize * 0.3, 0, Math.PI * 2);
-      break;
     case 'extra-rounded':
       const r2 = size * 0.4;
       ctx.roundRect(x, y, size, size, r2);
@@ -119,12 +91,7 @@ export function drawBodyShape(
       ctx.roundRect(x, y, size, size * 0.7, r3);
       ctx.roundRect(x, y + size * 0.3, size * 0.7, size * 0.7, r3);
       break;
-    case 'dots-rounded':
-      ctx.arc(centerX, centerY, size * 0.25, 0, Math.PI * 2);
-      break;
-    case 'rounded-dots':
-      ctx.arc(centerX, centerY, size * 0.3, 0, Math.PI * 2);
-      break;
+  
     case 'flower':
       const petals = 8;
       // Use larger radius to ensure complete coverage
@@ -138,21 +105,7 @@ export function drawBodyShape(
       }
       ctx.closePath();
       break;
-    case 'star':
-      const points = 5;
-      // Use larger radius to ensure complete coverage of the module area
-      const outerRadius = halfSize * 0.95;
-      const innerRadius = halfSize * 0.4;
-      ctx.moveTo(centerX + outerRadius, centerY);
-      for (let i = 0; i < points * 2; i++) {
-        const angle = (i * Math.PI) / points;
-        const r = i % 2 === 0 ? outerRadius : innerRadius;
-        const px = centerX + r * Math.cos(angle - Math.PI / 2);
-        const py = centerY + r * Math.sin(angle - Math.PI / 2);
-        ctx.lineTo(px, py);
-      }
-      ctx.closePath();
-      break;
+   
     default:
       ctx.rect(x, y, size, size);
   }
