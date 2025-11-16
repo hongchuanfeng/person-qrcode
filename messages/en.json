@@ -132,7 +132,7 @@
         },
         "commercial": {
           "title": "Single QR code free/bulk requires membership service",
-          "description": "Single QR code generation is 100% free, batch generation requires membership and can be used for any purpose you want. This includes all commercial purposes. Batch generation of QR codes requires membership and can be downloaded as a ZIP file."
+          "description": "Single QR code generation is free, batch generation requires membership and can be used for any purpose you want. This includes all commercial purposes. Batch generation of QR codes requires membership and can be downloaded as a ZIP file."
         }
       }
     },
