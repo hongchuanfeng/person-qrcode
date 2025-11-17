@@ -13,14 +13,17 @@ export type PlanType = keyof typeof PLAN_DURATIONS;
 /**
  * Get plan type from product ID
  */
-export function getPlanTypeFromProductId(productId: string): PlanType | null {
-  const PRODUCT_TO_PLAN: Record<string, PlanType> = {
-    'prod_4L6YdpnlJEdRjzPg9OjH8Z': 'monthly',
-    'prod_6MCeuAFjzFqFZduAn74Ew7': 'quarterly',
-    'prod_6LKkd6OJ8pLCesUdoVNV9I': 'yearly'
-  };
+const PLAN_PRODUCT_IDS: Record<PlanType, string[]> = {
+  monthly: ['prod_4L6YdpnlJEdRjzPg9OjH8Z', 'prod_1l9cjsowPhSJlsfrTTXlKb'],
+  quarterly: ['prod_6MCeuAFjzFqFZduAn74Ew7'],
+  yearly: ['prod_6LKkd6OJ8pLCesUdoVNV9I']
+};
 
-  return PRODUCT_TO_PLAN[productId] || null;
+export function getPlanTypeFromProductId(productId: string): PlanType | null {
+  const entry = Object.entries(PLAN_PRODUCT_IDS).find(([, ids]) =>
+    ids.includes(productId)
+  );
+  return (entry?.[0] as PlanType) ?? null;
 }
 
 /**
