@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@/utils/supabase/server";
 
-const CREEM_ENDPOINT = "https://api.creem.io/v1/checkouts";
+//const CREEM_ENDPOINT = "https://api.creem.io/v1/checkouts";
 
-//const CREEM_ENDPOINT = "https://test-api.creem.io/v1/checkouts";
+const CREEM_ENDPOINT = "https://test-api.creem.io/v1/checkouts";
 
 const PLANS = {
   monthly: {
-    productId: "prod_4L6YdpnlJEdRjzPg9OjH8Z",
+    productId: "prod_1l9cjsowPhSJlsfrTTXlKb",
     price: 9.9,
     label: "Monthly Plan"
   },
@@ -29,6 +30,19 @@ type CheckoutRequest = {
 };
 
 export async function POST(req: Request) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+    error: authError
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    return NextResponse.json(
+      { error: "Unauthorized. Please sign in first." },
+      { status: 401 }
+    );
+  }
+
   let body: CheckoutRequest;
   try {
     body = await req.json();
@@ -56,7 +70,11 @@ export async function POST(req: Request) {
   const selectedPlan = PLANS[planId];
 
   const payload = {
-    product_id: selectedPlan.productId
+    product_id: selectedPlan.productId,
+    metadata: {
+      internal_customer_id: user.id,
+      email: user.email ?? undefined
+    }
   };
 
   if (!apiKey) {
