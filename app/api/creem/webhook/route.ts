@@ -11,8 +11,8 @@ type CreemSubscriptionObject = {
   id: string;
   status: string;
   product?: {
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
     billing_period?: string;
   };
   customer?: {
@@ -27,10 +27,42 @@ type CreemSubscriptionObject = {
   current_period_end_date?: string;
 };
 
+type CreemCheckoutObject = {
+  id: string;
+  status?: string;
+  order?: {
+    id?: string;
+    status?: string;
+    transaction?: string;
+    customer?: string;
+    product?: string;
+    created_at?: string;
+    updated_at?: string;
+  };
+  product?: {
+    id?: string;
+    name?: string;
+    billing_period?: string;
+  };
+  subscription?: {
+    id?: string;
+    status?: string;
+    product?: string;
+    customer?: string;
+    current_period_start_date?: string;
+    current_period_end_date?: string;
+    metadata?: Record<string, string | undefined>;
+  };
+  metadata?: Record<string, string | undefined>;
+  customer?: {
+    id?: string;
+  };
+};
+
 type CreemWebhookPayload = {
   id: string;
   eventType: string;
-  object?: CreemSubscriptionObject;
+  object?: CreemSubscriptionObject | CreemCheckoutObject;
 };
 
 const WEBHOOK_SECRET = process.env.CREEM_WEBHOOK_SECRET;
@@ -43,7 +75,7 @@ type ParsedPayload =
     }
   | { error: NextResponse };
 
-const VALID_EVENT = 'subscription.paid';
+const VALID_EVENTS = ['subscription.paid', 'checkout.completed'] as const;
 
 function toIsoDate(value?: string | number | null) {
   if (!value) {
@@ -146,6 +178,70 @@ function resolvePlanType(
   return null;
 }
 
+function normalizeSubscriptionPayload(payload: CreemWebhookPayload):
+  | { subscription: CreemSubscriptionObject; status?: string; orderId?: string }
+  | null {
+  if (payload.eventType === 'subscription.paid') {
+    const object = payload.object as CreemSubscriptionObject | undefined;
+    if (!object) {
+      return null;
+    }
+    return {
+      subscription: object,
+      status: object.status,
+      orderId: object.metadata?.order_id || object.metadata?.orderId || object.last_transaction_id || undefined
+    };
+  }
+
+  if (payload.eventType === 'checkout.completed') {
+    const checkout = payload.object as CreemCheckoutObject | undefined;
+    if (!checkout) {
+      return null;
+    }
+
+    const orderStatus = checkout.order?.status?.toLowerCase();
+    const checkoutStatus = checkout.status?.toLowerCase();
+
+    // Only handle if checkout completed or order paid
+    if (checkoutStatus !== 'completed' && orderStatus !== 'paid') {
+      return null;
+    }
+
+    const subscription: CreemSubscriptionObject = {
+      id: checkout.subscription?.id || checkout.order?.id || checkout.id,
+      status: checkout.subscription?.status || orderStatus || checkout.status || 'active',
+      product: {
+        id:
+          checkout.product?.id ||
+          checkout.subscription?.product ||
+          checkout.order?.product ||
+          undefined,
+        name: checkout.product?.name,
+        billing_period: checkout.product?.billing_period
+      },
+      customer: {
+        id: checkout.subscription?.customer || checkout.customer?.id || checkout.order?.customer
+      },
+      metadata: {
+        ...checkout.subscription?.metadata,
+        ...checkout.metadata,
+        order_id: checkout.order?.id || checkout.metadata?.order_id
+      },
+      last_transaction_id: checkout.order?.transaction,
+      current_period_start_date: checkout.subscription?.current_period_start_date,
+      current_period_end_date: checkout.subscription?.current_period_end_date
+    };
+
+    return {
+      subscription,
+      status: subscription.status,
+      orderId: checkout.order?.id || checkout.metadata?.order_id
+    };
+  }
+
+  return null;
+}
+
 async function handleWebhook(request: Request) {
   try {
     const headersObject = Object.fromEntries(request.headers.entries());
@@ -165,11 +261,16 @@ async function handleWebhook(request: Request) {
       return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
     }
 
-    if (json.eventType !== VALID_EVENT) {
+    if (!VALID_EVENTS.includes(json.eventType as (typeof VALID_EVENTS)[number])) {
       return NextResponse.json({ ok: true, ignored: true });
     }
 
-    const subscription = json.object;
+    const normalized = normalizeSubscriptionPayload(json);
+    if (!normalized) {
+      return NextResponse.json({ ok: true, ignored: true });
+    }
+
+    const subscription = normalized.subscription;
     const userId =
       subscription.metadata?.internal_customer_id ||
       subscription.metadata?.user_id ||
@@ -182,8 +283,12 @@ async function handleWebhook(request: Request) {
     const productId = subscription.product?.id;
     const planType = resolvePlanType(productId, subscription);
     const orderId =
-      subscription.metadata?.order_id || subscription.metadata?.orderId || subscription.last_transaction_id || null;
-    const subscriptionId = subscription.id;
+      subscription.metadata?.order_id ||
+      subscription.metadata?.orderId ||
+      subscription.last_transaction_id ||
+      normalized.orderId ||
+      null;
+    const subscriptionId = subscription.id || normalized.orderId || null;
 
     if (!productId || !planType) {
       return NextResponse.json({ error: 'Unsupported or missing product id' }, { status: 400 });
@@ -196,12 +301,16 @@ async function handleWebhook(request: Request) {
       ? toIsoDate(subscription.current_period_end_date)
       : calculateEndDate(new Date(startDate), planType).toISOString();
 
+    const resolvedUserId = userId as string;
+    const resolvedProductId = productId as string;
+    const resolvedPlanType = planType as PlanType;
+
     const supabase = createServiceRoleClient();
 
     const { data: existing, error: fetchError } = await supabase
       .from('subscriptions')
       .select('id')
-      .eq('user_id', userId)
+      .eq('user_id', resolvedUserId)
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle();
@@ -212,17 +321,16 @@ async function handleWebhook(request: Request) {
     }
 
     const record = {
-      user_id: userId,
-      product_id: productId,
-      plan_type: planType,
-      order_id: orderId,
+      user_id: resolvedUserId,
+      product_id: resolvedProductId,
+      plan_type: resolvedPlanType,
+      order_id: orderId ?? null,
       subscription_id: subscriptionId,
       start_date: startDate,
       end_date: endDate,
-      status: subscription.status ?? 'active',
+      status: subscription.status ?? normalized.status ?? 'active',
       updated_at: new Date().toISOString()
     };
-
     if (existing?.id) {
       const { error: updateError } = await supabase
         .from('subscriptions')
