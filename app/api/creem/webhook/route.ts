@@ -98,7 +98,7 @@ async function parsePayload(request: Request): Promise<ParsedPayload> {
     }
 
     const signature =
-      request.headers.get('x-creem-signature') ||
+      request.headers.get('creem-signature') ||
       request.headers.get('x-webhook-secret') ||
       request.headers.get('x-signature');
     console.info('[Creem Webhook] signature (header):', signature);
