@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
+import { createHmac } from 'crypto';
 import { createServiceRoleClient } from '@/utils/supabase/service-role';
-import { getPlanTypeFromProductId } from '@/utils/subscription-helper';
+import {
+  getPlanTypeFromProductId,
+  calculateEndDate,
+  type PlanType
+} from '@/utils/subscription-helper';
 
 type CreemSubscriptionObject = {
   id: string;
@@ -8,6 +13,10 @@ type CreemSubscriptionObject = {
   product?: {
     id: string;
     name: string;
+    billing_period?: string;
+  };
+  customer?: {
+    id?: string;
   };
   metadata?: {
     internal_customer_id?: string;
@@ -24,6 +33,16 @@ type CreemWebhookPayload = {
 };
 
 const WEBHOOK_SECRET = process.env.CREEM_WEBHOOK_SECRET;
+
+type ParsedPayload =
+  | {
+      raw: string;
+      json: CreemWebhookPayload;
+      signature?: string | null;
+    }
+  | { error: NextResponse };
+
+const VALID_EVENT = 'subscription.paid';
 
 function toIsoDate(value?: string | number | null) {
   if (!value) {
@@ -43,41 +62,129 @@ function toIsoDate(value?: string | number | null) {
 }
 
 export async function POST(request: Request) {
+  return handleWebhook(request);
+}
+
+export async function GET(request: Request) {
+  return handleWebhook(request);
+}
+
+async function parsePayload(request: Request): Promise<ParsedPayload> {
   try {
-    if (WEBHOOK_SECRET) {
-      const signature =
-        request.headers.get('x-creem-signature') ||
-        request.headers.get('x-webhook-secret');
-      if (signature !== WEBHOOK_SECRET) {
-        return NextResponse.json({ error: 'Invalid webhook signature' }, { status: 401 });
+    if (request.method === 'GET') {
+      const url = new URL(request.url);
+      const payloadParam = url.searchParams.get('payload');
+      const signature = url.searchParams.get('signature');
+
+      if (!payloadParam) {
+        return {
+          error: NextResponse.json({ error: 'Missing payload parameter' }, { status: 400 })
+        };
       }
+
+      const raw = decodeURIComponent(payloadParam);
+      const json = JSON.parse(raw);
+
+      return { raw, json, signature };
     }
 
-    const payload: CreemWebhookPayload = await request.json();
+    const raw = await request.text();
+    console.info('[Creem Webhook] raw body:', raw);
+    if (!raw) {
+      return { error: NextResponse.json({ error: 'Empty request body' }, { status: 400 }) };
+    }
 
-    if (!payload?.object) {
+    const signature =
+      request.headers.get('x-creem-signature') ||
+      request.headers.get('x-webhook-secret') ||
+      request.headers.get('x-signature');
+
+    const json = JSON.parse(raw);
+    return { raw, json, signature };
+  } catch (error) {
+    console.error('Failed to parse webhook payload', error);
+    return {
+      error: NextResponse.json({ error: 'Invalid payload body' }, { status: 400 })
+    };
+  }
+}
+
+function verifySignature(raw: string, signature?: string | null) {
+  if (!WEBHOOK_SECRET) {
+    throw new Error('CREEM_WEBHOOK_SECRET is not configured');
+  }
+
+  if (!signature) {
+    return false;
+  }
+
+  const computed = createHmac('sha256', WEBHOOK_SECRET).update(raw).digest('hex');
+  return computed === signature;
+}
+
+function resolvePlanType(
+  productId: string | undefined,
+  subscription: CreemSubscriptionObject
+): PlanType | null {
+  if (productId) {
+    const lookup = getPlanTypeFromProductId(productId);
+    if (lookup) return lookup;
+  }
+
+  const period = subscription.product?.billing_period;
+  if (!period) return null;
+
+  if (period.includes('month')) return 'monthly';
+  if (period.includes('quarter')) return 'quarterly';
+  if (period.includes('year')) return 'yearly';
+
+  return null;
+}
+
+async function handleWebhook(request: Request) {
+  try {
+    const parsed = await parsePayload(request);
+    if ('error' in parsed) {
+      return parsed.error;
+    }
+
+    const { raw, json, signature } = parsed;
+
+    if (WEBHOOK_SECRET && !verifySignature(raw, signature)) {
+      return NextResponse.json({ error: 'Invalid webhook signature' }, { status: 401 });
+    }
+
+    if (!json?.object) {
       return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
     }
 
-    if (payload.eventType !== 'subscription.paid') {
+    if (json.eventType !== VALID_EVENT) {
       return NextResponse.json({ ok: true, ignored: true });
     }
 
-    const subscription = payload.object;
-    const productId = subscription.product?.id;
-    const planType = productId ? getPlanTypeFromProductId(productId) : null;
-    const userId = subscription.metadata?.internal_customer_id;
+    const subscription = json.object;
+    const userId =
+      subscription.metadata?.internal_customer_id ||
+      subscription.metadata?.user_id ||
+      subscription.customer?.id;
 
     if (!userId) {
-      return NextResponse.json({ error: 'Missing user identifier in metadata' }, { status: 400 });
+      return NextResponse.json({ error: 'Missing user identifier' }, { status: 400 });
     }
+
+    const productId = subscription.product?.id;
+    const planType = resolvePlanType(productId, subscription);
 
     if (!productId || !planType) {
       return NextResponse.json({ error: 'Unsupported or missing product id' }, { status: 400 });
     }
 
-    const startDate = toIsoDate(subscription.current_period_start_date);
-    const endDate = toIsoDate(subscription.current_period_end_date);
+    const startDate = subscription.current_period_start_date
+      ? toIsoDate(subscription.current_period_start_date)
+      : new Date().toISOString();
+    const endDate = subscription.current_period_end_date
+      ? toIsoDate(subscription.current_period_end_date)
+      : calculateEndDate(new Date(startDate), planType).toISOString();
 
     const supabase = createServiceRoleClient();
 
@@ -131,5 +238,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
-
 

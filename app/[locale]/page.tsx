@@ -1,7 +1,12 @@
+import { headers } from 'next/headers';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import QRCodeGenerator from '@/components/QRCodeGenerator';
 import SubscriptionPlans from '@/components/SubscriptionPlans';
 import { Metadata } from 'next';
+import {
+  handleCreemCallbackFromSearchParams,
+  type SearchParamsRecord
+} from '@/utils/creem/callback';
 
 export async function generateMetadata({
   params
@@ -23,17 +28,53 @@ export async function generateMetadata({
   };
 }
 
-export default async function HomePage({
-  params
-}: {
+interface HomePageProps {
   params: { locale: string };
-}) {
+  searchParams: SearchParamsRecord;
+}
+
+export default async function HomePage({ params, searchParams }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'home' });
+  const requestHeaders = headers();
+  const headerEntries = Array.from(requestHeaders.entries());
+  console.info(
+    '[Creem Callback] incoming headers:',
+    headerEntries.reduce(
+      (acc, [key, value]) => ({ ...acc, [key]: value }),
+      {} as Record<string, string>
+    )
+  );
+  const headerSignature =
+    requestHeaders.get('creem-signature') ?? requestHeaders.get('x-creem-signature');
+  const callbackResult = await handleCreemCallbackFromSearchParams(
+    searchParams,
+    headerSignature
+  );
+
+  const callbackBanner =
+    callbackResult?.processed && callbackResult.message ? (
+      <section
+        className="callback-banner"
+        style={{
+          padding: '1rem 1.25rem',
+          borderRadius: '10px',
+          border: `1px solid ${
+            callbackResult.success ? 'rgba(34,197,94,0.5)' : 'rgba(248,113,113,0.5)'
+          }`,
+          backgroundColor: callbackResult.success ? '#ecfdf5' : '#fef2f2',
+          color: callbackResult.success ? '#065f46' : '#991b1b',
+          marginBottom: '2rem'
+        }}
+      >
+        {callbackResult.message}
+      </section>
+    ) : null;
 
   return (
     <div className="home-page">
+      {callbackBanner}
       <section className="hero-section">
         <h1>{t('title')}</h1>
         <p className="subtitle">{t('subtitle')}</p>

@@ -14,7 +14,11 @@ export type PlanType = keyof typeof PLAN_DURATIONS;
  * Get plan type from product ID
  */
 const PLAN_PRODUCT_IDS: Record<PlanType, string[]> = {
-  monthly: ['prod_4L6YdpnlJEdRjzPg9OjH8Z', 'prod_1l9cjsowPhSJlsfrTTXlKb'],
+  monthly: [
+    'prod_4L6YdpnlJEdRjzPg9OjH8Z',
+    'prod_1l9cjsowPhSJlsfrTTXlKb',
+    'prod_d1AY2Sadk9YAvLI0pj97f'
+  ],
   quarterly: ['prod_6MCeuAFjzFqFZduAn74Ew7'],
   yearly: ['prod_6LKkd6OJ8pLCesUdoVNV9I']
 };
