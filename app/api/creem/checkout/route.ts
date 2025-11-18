@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
 
-//const CREEM_ENDPOINT = "https://api.creem.io/v1/checkouts";
+const CREEM_ENDPOINT = "https://api.creem.io/v1/checkouts";
 
-const CREEM_ENDPOINT = "https://test-api.creem.io/v1/checkouts";
+//const CREEM_ENDPOINT = "https://test-api.creem.io/v1/checkouts";
 
 const PLANS = {
   monthly: {
-    productId: "prod_1l9cjsowPhSJlsfrTTXlKb",
+    productId: "prod_4L6YdpnlJEdRjzPg9OjH8Z",
     price: 9.9,
     label: "Monthly Plan"
   },

@@ -271,6 +271,9 @@ async function handleWebhook(request: Request) {
     }
 
     const subscription = normalized.subscription;
+    console.info('[Creem Webhook] resolved event:', json.eventType);
+    console.info('[Creem Webhook] resolved subscription status:', subscription.status);
+    console.info('[Creem Webhook] resolved order status:', normalized.status);
     const userId =
       subscription.metadata?.internal_customer_id ||
       subscription.metadata?.user_id ||

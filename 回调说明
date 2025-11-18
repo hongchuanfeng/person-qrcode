@@ -1,7 +1,7 @@
 
 https://qrcode.chdaoai.com/zh?checkout_id=ch_3d1ljVeP5qh03wrVNcTIfJ&order_id=ord_5xdskrxY8aEYMtRroJvZf8&customer_id=
 cust_7iL6J3cGO2SpiUEia1oL9F&subscription_id=sub_4HIE6Lko7pI3eC5WQc1zQa&
-product_id=prod_1l9cjsowPhSJlsfrTTXlKb&signature=9b89165671453dd9d88de082535b348d1dfc1780a28f910230eef1f54ef5aed4
+product_id=prod_4L6YdpnlJEdRjzPg9OjH8Z&signature=9b89165671453dd9d88de082535b348d1dfc1780a28f910230eef1f54ef5aed4
 
 
 上面的是回调的地址的参数，对signature字段用如下处理：
@@ -88,7 +88,7 @@ import * as crypto from 'crypto';
   }。
 
 
-  请 修改这个实现
+  请 修改这个修改
   
 
 
