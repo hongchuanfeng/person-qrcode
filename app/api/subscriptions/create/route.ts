@@ -7,12 +7,13 @@ type CreateSubscriptionRequest = {
   userId: string;
   productId: string;
   orderId?: string;
+  subscriptionId?: string;
 };
 
 export async function POST(request: Request) {
   try {
     const body: CreateSubscriptionRequest = await request.json();
-    const { userId, productId, orderId } = body;
+    const { userId, productId, orderId, subscriptionId } = body;
 
     if (!userId || !productId) {
       return NextResponse.json(
@@ -54,7 +55,11 @@ export async function POST(request: Request) {
       productId,
       planType,
       startDate,
-      endDate
+      endDate,
+      {
+        orderId: orderId ?? null,
+        subscriptionId: subscriptionId ?? null
+      }
     );
 
     if (!subscription) {

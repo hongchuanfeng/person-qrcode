@@ -24,6 +24,8 @@ export default function SuccessContent() {
       const productId = searchParams.get('product_id') || 
                        searchParams.get('productId') ||
                        (typeof window !== 'undefined' ? sessionStorage.getItem('lastProductId') : null);
+      const orderId = searchParams.get('order_id') || searchParams.get('orderId');
+      const subscriptionId = searchParams.get('subscription_id') || searchParams.get('subscriptionId');
 
       if (!productId) {
         setStatus('error');
@@ -39,7 +41,9 @@ export default function SuccessContent() {
           },
           body: JSON.stringify({
             userId: user.id,
-            productId: productId
+            productId: productId,
+            orderId,
+            subscriptionId
           })
         });
 

@@ -22,6 +22,7 @@ type CreemSubscriptionObject = {
     internal_customer_id?: string;
     [key: string]: string | undefined;
   };
+  last_transaction_id?: string;
   current_period_start_date?: string;
   current_period_end_date?: string;
 };
@@ -75,6 +76,8 @@ async function parsePayload(request: Request): Promise<ParsedPayload> {
       const url = new URL(request.url);
       const payloadParam = url.searchParams.get('payload');
       const signature = url.searchParams.get('signature');
+      console.info('[Creem Webhook] payloadParam:', payloadParam);
+      console.info('[Creem Webhook] signature (query):', signature);
 
       if (!payloadParam) {
         return {
@@ -98,6 +101,7 @@ async function parsePayload(request: Request): Promise<ParsedPayload> {
       request.headers.get('x-creem-signature') ||
       request.headers.get('x-webhook-secret') ||
       request.headers.get('x-signature');
+    console.info('[Creem Webhook] signature (header):', signature);
 
     const json = JSON.parse(raw);
     return { raw, json, signature };
@@ -119,6 +123,7 @@ function verifySignature(raw: string, signature?: string | null) {
   }
 
   const computed = createHmac('sha256', WEBHOOK_SECRET).update(raw).digest('hex');
+  console.info('[Creem Webhook] computed signature:', computed);
   return computed === signature;
 }
 
@@ -143,6 +148,8 @@ function resolvePlanType(
 
 async function handleWebhook(request: Request) {
   try {
+    const headersObject = Object.fromEntries(request.headers.entries());
+    console.info('[Creem Webhook] incoming headers:', headersObject);
     const parsed = await parsePayload(request);
     if ('error' in parsed) {
       return parsed.error;
@@ -174,6 +181,9 @@ async function handleWebhook(request: Request) {
 
     const productId = subscription.product?.id;
     const planType = resolvePlanType(productId, subscription);
+    const orderId =
+      subscription.metadata?.order_id || subscription.metadata?.orderId || subscription.last_transaction_id || null;
+    const subscriptionId = subscription.id;
 
     if (!productId || !planType) {
       return NextResponse.json({ error: 'Unsupported or missing product id' }, { status: 400 });
@@ -205,6 +215,8 @@ async function handleWebhook(request: Request) {
       user_id: userId,
       product_id: productId,
       plan_type: planType,
+      order_id: orderId,
+      subscription_id: subscriptionId,
       start_date: startDate,
       end_date: endDate,
       status: subscription.status ?? 'active',

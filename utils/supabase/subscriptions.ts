@@ -5,6 +5,8 @@ export interface Subscription {
   user_id: string;
   product_id: string;
   plan_type: 'monthly' | 'quarterly' | 'yearly';
+  order_id?: string | null;
+  subscription_id?: string | null;
   start_date: string;
   end_date: string;
   created_at: string;
@@ -75,7 +77,11 @@ export async function createSubscription(
   productId: string,
   planType: 'monthly' | 'quarterly' | 'yearly',
   startDate: Date,
-  endDate: Date
+  endDate: Date,
+  options?: {
+    orderId?: string | null;
+    subscriptionId?: string | null;
+  }
 ): Promise<Subscription | null> {
   try {
     const supabase = await createClient();
@@ -86,6 +92,8 @@ export async function createSubscription(
         user_id: userId,
         product_id: productId,
         plan_type: planType,
+        order_id: options?.orderId ?? null,
+        subscription_id: options?.subscriptionId ?? null,
         start_date: startDate.toISOString(),
         end_date: endDate.toISOString()
       })
