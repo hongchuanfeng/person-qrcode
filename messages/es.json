@@ -1,0 +1,480 @@
+{
+  "common": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "privacy": "Política de privacidad",
+    "terms": "Términos de servicio",
+    "copyright": "Derechos reservados",
+    "subscribe": "Suscribirse",
+    "batch": "Lotes",
+    "chdaoai": "chdaoai",
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión",
+    "signInWithGoogle": "Entrar con Google",
+    "welcome": "Bienvenido",
+    "loading": "Cargando...",
+    "membership": "Mi suscripción",
+    "scan": "Escáner"
+  },
+  "home": {
+    "title": "Generador de códigos QR personalizados",
+    "subtitle": "Crea códigos QR únicos con tus propios colores e imágenes",
+    "description": "Sube una imagen, ajusta el diseño y comparte tu QR en cuestión de segundos.",
+    "features": {
+      "title": "Funciones",
+      "upload": "Subir imagen",
+      "uploadDesc": "Añade cualquier logo o imagen al centro del código",
+      "generate": "Generar código",
+      "generateDesc": "Obtén códigos QR fiables al instante",
+      "download": "Descargar y compartir",
+      "downloadDesc": "Exporta en PNG, JPG o SVG para imprimir o publicar",
+      "track": "Seguimiento",
+      "trackDesc": "Consulta estadísticas básicas de escaneos"
+    },
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "step1": "Introduce el contenido",
+      "step1Desc": "Escribe un enlace, texto, tarjeta de contacto o Wi-Fi",
+      "step2": "Sube tu imagen",
+      "step2Desc": "Coloca un logo o icono en el centro del QR",
+      "step3": "Personaliza el diseño",
+      "step3Desc": "Elige colores, formas y fondo a tu gusto",
+      "step4": "Descarga y comparte",
+      "step4Desc": "Descarga archivos de alta calidad y compártelos al instante"
+    },
+    "examples": {
+      "title": "Ejemplos de uso",
+      "business": "Tarjetas de visita",
+      "businessDesc": "Comparte datos de contacto con un solo escaneo",
+      "marketing": "Material promocional",
+      "marketingDesc": "Añade códigos a folletos, carteles y anuncios",
+      "events": "Eventos",
+      "eventsDesc": "Invitaciones, entradas y acreditaciones inteligentes",
+      "product": "Empaques",
+      "productDesc": "Incluye información del producto o instrucciones",
+      "restaurant": "Menús digitales",
+      "restaurantDesc": "Ofrece cartas sin contacto para tus clientes",
+      "wifi": "Acceso Wi-Fi",
+      "wifiDesc": "Comparte la contraseña de la red fácilmente",
+      "payment": "Pagos",
+      "paymentDesc": "Recibe pagos con un simple QR",
+      "social": "Redes sociales",
+      "socialDesc": "Dirige a tus seguidores al perfil correcto",
+      "website": "Sitios web",
+      "websiteDesc": "Comparte enlaces con un diseño moderno",
+      "contact": "Datos de contacto",
+      "contactDesc": "Envía tarjetas virtuales y formularios"
+    },
+    "gallery": {
+      "title": "Galería de diseños",
+      "subtitle": "Inspírate con lo que puedes crear",
+      "example1": {
+        "title": "QR con marca",
+        "description": "Refuerza tu identidad visual con un logo central"
+      },
+      "example2": {
+        "title": "Diseño colorido",
+        "description": "Ajusta los colores a la paleta de tu marca"
+      },
+      "example3": {
+        "title": "QR para eventos",
+        "description": "Perfecto para tickets y credenciales"
+      },
+      "example4": {
+        "title": "QR corporativo",
+        "description": "Aspecto profesional para materiales B2B"
+      },
+      "example5": {
+        "title": "QR creativo",
+        "description": "Formas únicas que llaman la atención"
+      },
+      "example6": {
+        "title": "Estilo moderno",
+        "description": "Ideal para campañas digitales actuales"
+      },
+      "example7": {
+        "title": "QR para Facebook",
+        "description": "Lleva usuarios a tu fanpage con un escaneo"
+      },
+      "example8": {
+        "title": "QR para Twitter/X",
+        "description": "Comparte tu perfil y aumenta tus seguidores"
+      },
+      "example9": {
+        "title": "QR para YouTube",
+        "description": "Impulsa visitas y suscriptores del canal"
+      }
+    },
+    "about": {
+      "title": "Sobre el servicio",
+      "subtitle": "El mejor generador para QR de alta calidad",
+      "description": "Personalized QRCode ha sido utilizado por millones de usuarios para crear QR listos para impresión con potentes opciones de diseño.",
+      "features": {
+        "lifetime": {
+          "title": "Sin caducidad",
+          "description": "Los QR estáticos nunca expiran ni tienen límite de scans."
+        },
+        "logo": {
+          "title": "QR con logotipo",
+          "description": "Añade tu marca sin perder legibilidad gracias al nivel de corrección de errores."
+        },
+        "design": {
+          "title": "Diseño flexible",
+          "description": "Modifica formas de ojos, módulos, fondos y aplica gradientes."
+        },
+        "print": {
+          "title": "Listo para imprimir",
+          "description": "Descarga imágenes de alta resolución o formatos vectoriales SVG/EPS/PDF."
+        },
+        "vector": {
+          "title": "Formatos editables",
+          "description": "Edita en Illustrator, Figma o tu editor favorito sin perder calidad."
+        },
+        "commercial": {
+          "title": "Uso comercial permitido",
+          "description": "Códigos individuales gratis; generación masiva disponible con suscripción."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Create Your QR Code?",
+      "button": "Get Started"
+    },
+    "getStarted": {
+      "title": "Get Started",
+      "subtitle": "Create your custom QR Code with Logo",
+      "step1": {
+        "title": "Set QR Content",
+        "description": "Select a content type at the top for your QR code (URL, Text, Email...). After selecting your type you will see all available options. Enter all fields that should appear when scanning your QR code. Make sure everything you enter is correct because you can't change the content once your QR code is printed."
+      },
+      "step2": {
+        "title": "Customize Design",
+        "description": "You want your QR code to look unique? Set a custom color and replace the standard shapes of your QR code. The corner elements and the body can be customized individually. Add a logo to your QR code. Select it from the gallery or upload your own logo image. You can also start with one of the templates from the template gallery."
+      },
+      "step3": {
+        "title": "Generate QR Code",
+        "description": "Set the pixel resolution of your QR code with the slider. Click the \"Create QR Code\"-button to see your qr code preview. Please make sure your QR code is working correctly by scanning the preview with your QR Code scanner. Use a high resolution setting if you want to get a png code with print quality."
+      },
+      "step4": {
+        "title": "Download Image",
+        "description": "Now you can download the image files for your QR code as .png or .svg, .jpg vector graphic. If you want a vector format with the complete design please choose .svg. SVG is working in software like Adobe Illustrator or Inkscape. The logo and design settings currently only work for .png and .svg files."
+      }
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "description": "We are dedicated to providing the best personalized QR code generation service. Our platform makes it easy for anyone to create beautiful, customized QR codes for any purpose.",
+    "story": {
+      "title": "Our Story",
+      "description": "Founded in 2024, Personalized QR Code was born from a simple idea: making QR codes beautiful, customizable, and accessible to everyone. We believe that QR codes should not only be functional but also visually appealing, reflecting your brand and personality."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To make QR code creation accessible, beautiful, and functional for everyone. We aim to democratize QR code generation by providing a user-friendly platform that requires no technical expertise."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To become the leading platform for personalized QR code generation worldwide, empowering individuals and businesses to create stunning, branded QR codes that enhance their digital presence."
+    },
+    "values": {
+      "title": "Our Values",
+      "value1": {
+        "title": "User-Friendly Design",
+        "description": "We prioritize simplicity and ease of use. Our intuitive interface ensures that anyone can create professional QR codes in minutes."
+      },
+      "value2": {
+        "title": "High-Quality Output",
+        "description": "We use advanced algorithms to ensure every QR code is crisp, scannable, and meets industry standards."
+      },
+      "value3": {
+        "title": "Privacy and Security",
+        "description": "Your data is important to us. We implement strict security measures to protect your information and respect your privacy."
+      },
+      "value4": {
+        "title": "Innovation",
+        "description": "We continuously improve our platform with new features and enhancements based on user feedback."
+      }
+    },
+    "why": {
+      "title": "Why Choose Us?",
+      "reason1": {
+        "title": "Easy to Use",
+        "description": "No technical skills required. Create professional QR codes in just a few clicks."
+      },
+      "reason2": {
+        "title": "Fully Customizable",
+        "description": "Upload your logo, choose colors, adjust size, and make your QR code uniquely yours."
+      },
+      "reason3": {
+        "title": "Fast & Reliable",
+        "description": "Generate high-quality QR codes instantly with our optimized platform."
+      },
+      "reason4": {
+        "title": "Free to Start",
+        "description": "Create QR codes with our free plan, upgrade when you need more features."
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "Meet the talented individuals behind Personalized QR Code. We're a diverse group of developers, designers, and innovators passionate about creating the best QR code generation experience.",
+      "member1": {
+        "name": "Alex Chen",
+        "role": "Founder & CEO",
+        "bio": "Visionary leader with 10+ years of experience in software development and digital innovation. Passionate about making technology accessible to everyone."
+      },
+      "member2": {
+        "name": "Sarah Johnson",
+        "role": "Lead Designer",
+        "bio": "Creative designer specializing in user experience and interface design. Dedicated to creating beautiful and intuitive products."
+      },
+      "member3": {
+        "name": "Michael Zhang",
+        "role": "Senior Developer",
+        "bio": "Full-stack developer with expertise in modern web technologies. Ensures our platform is fast, reliable, and scalable."
+      },
+      "member4": {
+        "name": "Emily Wang",
+        "role": "Product Manager",
+        "bio": "Strategic product manager focused on user needs and business growth. Bridges the gap between technology and customer satisfaction."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "description": "¿Tienes dudas? Escríbenos y responderemos lo antes posible.",
+    "email": {
+      "title": "Envíanos un correo",
+      "description": "Respondemos la mayoría de los mensajes en 24 horas hábiles.",
+      "general": "Consultas generales",
+      "support": "Soporte técnico",
+      "business": "Alianzas comerciales"
+    },
+    "support": {
+      "title": "Soporte",
+      "description": "Nuestro equipo puede ayudarte con cualquier consulta técnica o de producto.",
+      "hours": "Horario: lunes a viernes, 9:00 a 18:00 (UTC)"
+    },
+    "response": {
+      "title": "Tiempo de respuesta",
+      "description": "Normalmente respondemos dentro del mismo día hábil."
+    },
+    "social": {
+      "title": "Redes sociales",
+      "description": "Síguenos para conocer novedades y trucos."
+    },
+    "form": {
+      "title": "Envía un mensaje",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "send": "Enviar",
+      "sending": "Enviando...",
+      "success": "¡Gracias! Recibimos tu mensaje.",
+      "error": "No pudimos enviar el mensaje. Intenta nuevamente."
+    }
+  },
+  "qr": {
+    "urlPlaceholder": "Introduce una URL o texto",
+    "uploadImage": "Subir imagen",
+    "generate": "Generar QR",
+    "download": "Descargar",
+    "downloadFormat": "Formato de descarga",
+    "formatPNG": "PNG",
+    "formatJPG": "JPG",
+    "formatSVG": "SVG",
+    "share": "Compartir",
+    "print": "Imprimir",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "save": "Guardar",
+    "scans": "Historial de escaneos",
+    "scansCount": "Total de escaneos",
+    "color": "Color",
+    "backgroundColor": "Color de fondo",
+    "size": "Tamaño",
+    "bodyShape": "Forma del cuerpo",
+    "eyeFrameShape": "Marco de los ojos",
+    "eyeBallShape": "Centro del ojo",
+    "shapeSquare": "Cuadrado",
+    "shapeRounded": "Redondeado",
+    "shapeDots": "Puntos",
+    "shapeExtraRounded": "Muy redondeado",
+    "shapeClassy": "Clásico",
+    "shapeClassyRounded": "Clásico redondeado",
+    "shapeDotsRounded": "Puntos suaves",
+    "shapeRoundedDots": "Puntos circulares",
+    "shapeFlower": "Flor",
+    "shapeStar": "Estrella",
+    "shapeCircle": "Círculo",
+    "shapeDiamond": "Rombo",
+    "shapeLeaf": "Hoja",
+    "shapeDot": "Punto"
+  },
+  "subscribe": {
+    "title": "Planes de suscripción",
+    "description": "Elige la opción que mejor se adapte a tu proyecto",
+    "monthly": "Mensual",
+    "quarterly": "Trimestral",
+    "yearly": "Anual",
+    "checkout": "Ir al pago",
+    "redirecting": "Redirigiendo...",
+    "loginRequired": "Inicia sesión para suscribirte. Redirigiendo...",
+    "plans": {
+      "monthly": {
+        "title": "Plan mensual",
+        "subtitle": "Perfecto para probar el servicio",
+        "priceLabel": "$9.9 / mes",
+        "savings": "Facturado cada 30 días."
+      },
+      "quarterly": {
+        "title": "Plan trimestral",
+        "subtitle": "Paga una vez y disfruta 3 meses",
+        "priceLabel": "$19.9 / trimestre",
+        "savings": "Ahorra 33% comparado con el mensual."
+      },
+      "yearly": {
+        "title": "Plan anual",
+        "subtitle": "La opción más económica a largo plazo",
+        "priceLabel": "$69.9 / año",
+        "savings": "Ahorra 16% frente al mensual."
+      }
+    }
+  },
+  "batch": {
+    "title": "Generador de QR por lotes",
+    "subtitle": "Crea múltiples códigos desde archivos CSV o Excel",
+    "description": "Sube un archivo con URLs o textos; generamos un QR por fila y te entregamos todo en ZIP o PDF listo para imprimir.",
+    "upload": "Subir archivo",
+    "uploadDesc": "La primera columna debe contener el contenido del QR (URL, texto, etc.)",
+    "fileFormat": "Formatos soportados: CSV, XLS, XLSX",
+    "downloadTemplate": "Descargar plantilla",
+    "downloadTemplateCSV": "Plantilla CSV",
+    "downloadTemplateExcel": "Plantilla Excel",
+    "templateDesc": "Usa la plantilla para validar el formato correcto",
+    "processing": "Procesando...",
+    "generate": "Generar QR",
+    "generating": "Generando códigos...",
+    "downloadZip": "Descargar ZIP",
+    "downloadPdf": "Descargar PDF",
+    "downloadingZip": "Preparando ZIP...",
+    "downloadingPdf": "Preparando PDF...",
+    "reset": "Reiniciar",
+    "error": {
+      "noFile": "Por favor, sube un archivo.",
+      "invalidFormat": "Formato no válido. Usa CSV o Excel.",
+      "emptyFile": "El archivo está vacío o sin datos.",
+      "parseError": "No pudimos leer el archivo. Revisa el formato.",
+      "generateError": "Error al generar los QR. Inténtalo de nuevo.",
+      "loginRequired": "Inicia sesión para usar el generador en lote.",
+      "subscriptionRequired": "Necesitas una suscripción activa para esta función.",
+      "subscriptionCheckFailed": "No pudimos verificar tu suscripción.",
+      "zipError": "Error al crear el ZIP.",
+      "pdfError": "Error al crear el PDF."
+    },
+    "success": {
+      "generated": "Se generaron {count} QR correctamente",
+      "ready": "Los archivos están listos para descargar"
+    },
+    "preview": "Vista previa",
+    "count": "Total: {count}",
+    "selectedFile": "Archivo: {fileName}",
+    "moreItems": "Quedan {count} más...",
+    "customize": "Personalizar QR",
+    "qrColor": "Color del QR",
+    "bgColor": "Color de fondo",
+    "centerImage": "Imagen central (opcional)",
+    "removeImage": "Quitar imagen"
+  },
+  "membership": {
+    "title": "Mi suscripción",
+    "description": "Consulta el estado de tu plan y el historial de pagos",
+    "loading": "Cargando información...",
+    "loginRequired": "Inicia sesión para ver tus detalles de suscripción.",
+    "goHome": "Volver al inicio",
+    "retry": "Reintentar",
+    "userInfo": "Datos del usuario",
+    "email": "Correo",
+    "verified": "Verificado",
+    "activeSubscription": "Suscripción activa",
+    "noActiveSubscription": "No hay suscripción activa",
+    "subscribePrompt": "Contrata un plan para habilitar la generación por lotes.",
+    "subscribeNow": "Suscribirme",
+    "subscriptionHistory": "Historial de suscripciones",
+    "planType": "Tipo de plan",
+    "startDate": "Fecha de inicio",
+    "expiryDate": "Fecha de expiración",
+    "purchasedDate": "Fecha de compra",
+    "productId": "ID de producto",
+    "statusActive": "Activa",
+    "statusExpired": "Expirada",
+    "planMonthly": "Plan mensual",
+    "planQuarterly": "Plan trimestral",
+    "planYearly": "Plan anual"
+  },
+  "scanner": {
+    "title": "Lector de códigos QR",
+    "subtitle": "Sube una imagen o usa tu cámara para decodificar al instante",
+    "notes": {
+      "items": [
+        "Compatible con PNG, JPG, WebP y GIF de hasta 10 MB.",
+        "El modo cámara funciona en la mayoría de navegadores modernos.",
+        "Activa la linterna en entornos con poca luz para mejorar la lectura."
+      ]
+    },
+    "upload": {
+      "title": "Escanear desde imagen",
+      "description": "Sube una foto o captura que contenga un QR.",
+      "button": "Elegir imagen",
+      "help": "Consejo: recorta la imagen para que el código ocupe la mayor parte.",
+      "processing": "Analizando imagen...",
+      "error": "No encontramos un QR en el archivo. Prueba con una imagen más clara."
+    },
+    "camera": {
+      "title": "Escáner en vivo",
+      "description": "Usa la cámara de tu dispositivo sin salir de la página.",
+      "start": "Iniciar cámara",
+      "stop": "Detener",
+      "switch": "Cambiar cámara",
+      "device": "Cámara",
+      "torchOn": "Encender luz",
+      "torchOff": "Apagar luz",
+      "permission": "Concede permisos si no aparece la vista previa.",
+      "unsupported": "Tu navegador no permite acceso a la cámara.",
+      "statusOn": "Cámara activa",
+      "statusOff": "Cámara detenida",
+      "torchUnavailable": "Este dispositivo no admite linterna.",
+      "readError": "No pudimos leer el código. Ajusta la distancia o iluminación."
+    },
+    "status": {
+      "title": "Resultado",
+      "empty": "Aún no se ha escaneado ningún código.",
+      "copy": "Copiar resultado",
+      "clear": "Limpiar",
+      "history": "Escaneos recientes",
+      "historyEmpty": "Los resultados aparecerán aquí después del primer escaneo.",
+      "copyError": "No se pudo copiar. Hazlo manualmente."
+    },
+    "help": {
+      "title": "Consejos de uso",
+      "description": "Para la mejor precisión:",
+      "steps": [
+        "Mantén el QR plano, bien iluminado y enfocado.",
+        "Utiliza imágenes en alta resolución o centra el QR en la cámara.",
+        "Activa la luz en ambientes oscuros o utiliza una fuente externa.",
+        "Una vez decodificado, copia o comparte el resultado desde esta página.",
+        "Si el QR contiene un enlace, ábrelo en una nueva pestaña o compártelo.",
+        "Al escanear desde una pantalla, reduce el brillo y evita reflejos."
+      ]
+    },
+    "feedback": {
+      "title": "Comentarios y soporte",
+      "description": "Indícanos el problema, dispositivo y navegador para ayudarte más rápido.",
+      "placeholder": "Describe tu problema o sugerencia...",
+      "button": "Enviar comentario",
+      "mail": "Abriremos tu aplicación de correo con la información prellenada."
+    }
+  }
+}
+

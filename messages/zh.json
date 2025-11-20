@@ -14,7 +14,8 @@
     "signInWithGoogle": "使用 Google 登录",
     "welcome": "欢迎",
     "loading": "加载中...",
-    "membership": "会员中心"
+    "membership": "会员中心",
+    "scan": "扫码识别"
   },
   "home": {
     "title": "个性化二维码生成器",
@@ -344,7 +345,7 @@
   "batch": {
     "title": "批量二维码生成器",
     "subtitle": "从CSV或Excel文件批量生成多个二维码",
-    "description": "上传包含URL或文本的CSV或Excel文件，我们将为每一行生成二维码。将所有二维码下载为ZIP文件。",
+    "description": "上传包含URL或文本的CSV或Excel文件，我们将为每一行生成二维码。可下载ZIP压缩包或排版好的PDF文件。",
     "upload": "上传文件",
     "uploadDesc": "上传CSV或Excel文件。第一列应包含二维码内容（URL、文本等）",
     "fileFormat": "支持格式：CSV、XLS、XLSX",
@@ -355,7 +356,10 @@
     "processing": "处理中...",
     "generate": "生成二维码",
     "generating": "生成二维码中...",
-    "download": "下载ZIP",
+    "downloadZip": "下载ZIP",
+    "downloadPdf": "下载PDF",
+    "downloadingZip": "正在打包ZIP...",
+    "downloadingPdf": "正在生成PDF...",
     "reset": "重置",
     "error": {
       "noFile": "请上传文件",
@@ -365,7 +369,9 @@
       "generateError": "生成二维码时出错。请重试。",
       "loginRequired": "请先登录才能生成二维码。正在跳转到登录页面...",
       "subscriptionRequired": "批量生成功能需要订阅套餐。请先订阅套餐。",
-      "subscriptionCheckFailed": "检查订阅状态失败。请重试。"
+      "subscriptionCheckFailed": "检查订阅状态失败。请重试。",
+      "zipError": "打包ZIP文件失败，请重试。",
+      "pdfError": "生成PDF文件失败，请重试。"
     },
     "success": {
       "generated": "成功生成 {count} 个二维码",
@@ -406,6 +412,69 @@
     "planMonthly": "月度计划",
     "planQuarterly": "季度计划",
     "planYearly": "年度计划"
+  },
+  "scanner": {
+    "title": "二维码识别器",
+    "subtitle": "上传图片或使用摄像头，立即读取二维码内容。",
+    "notes": {
+      "items": [
+        "支持 PNG、JPG、WebP、GIF 等图片（最大 10 MB）。",
+        "实时摄像模式兼容大多数桌面和移动浏览器。",
+        "在光线不足时可开启补光灯提高识别率。"
+      ]
+    },
+    "upload": {
+      "title": "图片识别",
+      "description": "上传包含二维码的照片或截图。",
+      "button": "选择图片",
+      "help": "建议提前裁剪，让二维码占据主要画面以获得更高准确率。",
+      "processing": "正在识别图片...",
+      "error": "未能在图片中找到二维码，请尝试更清晰的图片。"
+    },
+    "camera": {
+      "title": "摄像头实时识别",
+      "description": "打开摄像头即可实时扫码，无需额外应用。",
+      "start": "开启摄像头",
+      "stop": "关闭摄像头",
+      "switch": "摄像头",
+      "device": "摄像头",
+      "torchOn": "打开补光灯",
+      "torchOff": "关闭补光灯",
+      "permission": "如果看不到画面，请先允许浏览器访问摄像头。",
+      "unsupported": "当前浏览器不支持摄像头访问。",
+      "statusOn": "摄像头已开启",
+      "statusOff": "摄像头已关闭",
+      "torchUnavailable": "此设备不支持补光灯控制。",
+      "readError": "暂未读取到二维码，可调整距离或光线后重试。"
+    },
+    "status": {
+      "title": "识别结果",
+      "empty": "暂未识别到任何内容。",
+      "copy": "复制结果",
+      "clear": "清空",
+      "history": "最近识别记录",
+      "historyEmpty": "成功识别后会在此显示历史记录。",
+      "copyError": "复制失败，请手动复制文本。"
+    },
+    "help": {
+      "title": "使用帮助",
+      "description": "按以下步骤操作可以提升识别成功率：",
+      "steps": [
+        "保持二维码平整、清晰，并确保光线充足。",
+        "上传高清图片或在摄像头中让二维码对准取景框。",
+        "光线较暗时可使用补光灯或外部光源。",
+        "识别完成后即可复制或分享结果。",
+        "若二维码包含网址，可点击结果直接打开或复制给好友。",
+        "在电脑屏幕上扫描时，可适当降低亮度或避免反光。"
+      ]
+    },
+    "feedback": {
+      "title": "问题反馈",
+      "description": "请注明设备、浏览器及问题描述，方便我们快速定位。",
+      "placeholder": "请输入遇到的问题或建议...",
+      "button": "发送反馈",
+      "mail": "我们将调用默认邮件客户端并填写以上内容。"
+    }
   }
 }
 

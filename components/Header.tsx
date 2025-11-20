@@ -3,17 +3,21 @@
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function Header() {
   const t = useTranslations('common');
   const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, loading, signInWithGoogle, signOut } = useAuth();
 
   const navigation = [
     { name: t('home'), href: `/${locale}` },
     { name: t('batch'), href: `/${locale}/batch` },
+    { name: t('scan'), href: `/${locale}/scan` },
     { name: t('about'), href: `/${locale}/about` },
     { name: t('contact'), href: `/${locale}/contact` }
   ];
@@ -114,9 +118,33 @@ export default function Header() {
             </button>
           )}
           <div className="language-switcher">
-            <Link href={`/${locale === 'en' ? 'zh' : 'en'}`} className="lang-link">
-              {locale === 'en' ? '中文' : 'English'}
-            </Link>
+            <label htmlFor="language-select" className="visually-hidden">
+              Language
+            </label>
+            <select
+              id="language-select"
+              className="language-select"
+              value={locale}
+              onChange={(event) => {
+                const targetLocale = event.target.value;
+                const segments = pathname?.split('/') ?? [];
+                if (segments.length > 1) {
+                  segments[1] = targetLocale;
+                  router.push(segments.join('/') || `/${targetLocale}`);
+                } else {
+                  router.push(`/${targetLocale}`);
+                }
+              }}
+            >
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+              <option value="de">Deutsch</option>
+              <option value="fr">Français</option>
+              <option value="ru">Русский</option>
+              <option value="pt">Português</option>
+              <option value="ar">العربية</option>
+              <option value="es">Español</option>
+            </select>
           </div>
         </div>
       </nav>

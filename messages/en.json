@@ -1,20 +1,21 @@
 {
   "common": {
     "home": "Home",
-    "about": "About Us",
-    "contact": "Contact Us",
+    "about": "About",
+    "contact": "Contact",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "copyright": "Copyright",
     "subscribe": "Subscribe",
-    "batch": "Batch Generate",
+    "batch": "Batch",
     "chdaoai": "chdaoai",
     "signIn": "Sign In",
     "signOut": "Sign Out",
     "signInWithGoogle": "Sign in with Google",
     "welcome": "Welcome",
     "loading": "Loading...",
-    "membership": "Membership"
+    "membership": "Membership",
+    "scan": "Scanner"
   },
   "home": {
     "title": "Personalized QR Code Generator",
@@ -344,7 +345,7 @@
   "batch": {
     "title": "Batch QR Code Generator",
     "subtitle": "Generate multiple QR codes at once from CSV or Excel files",
-    "description": "Upload a CSV or Excel file containing URLs or text, and we'll generate QR codes for each row. Download all QR codes as a ZIP file.",
+    "description": "Upload a CSV or Excel file containing URLs or text, and we'll generate QR codes for each row. Download everything as a ZIP archive or a ready-to-print PDF.",
     "upload": "Upload File",
     "uploadDesc": "Upload a CSV or Excel file. The first column should contain the content for QR codes (URLs, text, etc.)",
     "fileFormat": "Supported formats: CSV, XLS, XLSX",
@@ -355,7 +356,10 @@
     "processing": "Processing...",
     "generate": "Generate QR Codes",
     "generating": "Generating QR codes...",
-    "download": "Download ZIP",
+    "downloadZip": "Download ZIP",
+    "downloadPdf": "Download PDF",
+    "downloadingZip": "Preparing ZIP...",
+    "downloadingPdf": "Preparing PDF...",
     "reset": "Reset",
     "error": {
       "noFile": "Please upload a file",
@@ -365,7 +369,9 @@
       "generateError": "Error generating QR codes. Please try again.",
       "loginRequired": "Please log in to generate QR codes. Redirecting to login...",
       "subscriptionRequired": "A subscription is required to use batch generation. Please subscribe to a plan first.",
-      "subscriptionCheckFailed": "Failed to check subscription status. Please try again."
+      "subscriptionCheckFailed": "Failed to check subscription status. Please try again.",
+      "zipError": "Error creating ZIP file. Please try again.",
+      "pdfError": "Error creating PDF file. Please try again."
     },
     "success": {
       "generated": "Successfully generated {count} QR codes",
@@ -406,6 +412,69 @@
     "planMonthly": "Monthly Plan",
     "planQuarterly": "Quarterly Plan",
     "planYearly": "Yearly Plan"
+  },
+  "scanner": {
+    "title": "QR Code Picture Scanner",
+    "subtitle": "Upload an image or use your device camera to decode any QR code instantly.",
+    "notes": {
+      "items": [
+        "Works with PNG, JPG, WebP and GIF images up to 10 MB.",
+        "Live camera mode supports most modern desktop and mobile browsers.",
+        "Use the light switch to improve accuracy in low-light environments."
+      ]
+    },
+    "upload": {
+      "title": "Scan from an image",
+      "description": "Upload a screenshot or photo that contains a QR code.",
+      "button": "Select image",
+      "help": "Tip: crop the picture so the QR code fills the frame for best accuracy.",
+      "processing": "Decoding image...",
+      "error": "We couldn't find a QR code in that file. Try a clearer picture."
+    },
+    "camera": {
+      "title": "Live camera scanner",
+      "description": "Use your camera to scan codes without leaving the page.",
+      "start": "Start camera",
+      "stop": "Stop camera",
+      "switch": "Camera",
+      "device": "Camera",
+      "torchOn": "Turn light on",
+      "torchOff": "Turn light off",
+      "permission": "Allow camera access if the preview does not appear.",
+      "unsupported": "Camera access is not supported in this browser.",
+      "statusOn": "Camera is active",
+      "statusOff": "Camera is turned off",
+      "torchUnavailable": "This camera does not support torch control.",
+      "readError": "We couldn't read a QR code from the video frame. Adjust distance or lighting and try again."
+    },
+    "status": {
+      "title": "Scan result",
+      "empty": "No QR code has been scanned yet.",
+      "copy": "Copy result",
+      "clear": "Clear",
+      "history": "Recent scans",
+      "historyEmpty": "Results will appear here after your first scan.",
+      "copyError": "Copy failed. Please copy the text manually."
+    },
+    "help": {
+      "title": "How to use",
+      "description": "Follow these tips for the best decoding accuracy:",
+      "steps": [
+        "Keep the QR code flat, well lit and in focus before scanning.",
+        "Upload a high-resolution image or start the camera and align the QR code with the frame.",
+        "Use the light switch when scanning at night or in low-light environments.",
+        "Once decoded, copy or share the result directly from this page.",
+        "If the QR contains a URL, tap it to open in a new tab or press Copy to share.",
+        "When scanning from a monitor, reduce brightness or avoid glare for better contrast."
+      ]
+    },
+    "feedback": {
+      "title": "Feedback & Support",
+      "description": "Describe the issue, device, and browser so we can help you faster.",
+      "placeholder": "Describe your issue or suggestion...",
+      "button": "Send feedback",
+      "mail": "We will open your email app with the information."
+    }
   }
 }
 

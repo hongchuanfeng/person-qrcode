@@ -37,23 +37,27 @@ export default function CustomQRCode({
       const qr = QRCode.create(value, { errorCorrectionLevel: 'H' });
       const modules = qr.modules;
       const moduleCount = modules.size;
-      // Calculate module size more accurately - use the actual module count without extra padding in calculation
-      const moduleSize = size / moduleCount;
-      // Add quiet zone (padding) - 4 modules on each side
-      const padding = moduleSize * 4;
+      const totalModules = moduleCount + 8; // include quiet zone
+      const moduleSize = Math.max(2, Math.floor(size / totalModules));
+      const usedSize = moduleSize * totalModules;
+      const remaining = size - usedSize;
+      const offset = Math.floor(remaining / 2);
+      const padding = offset + moduleSize * 4;
+      const qrSize = moduleSize * moduleCount;
 
       const svg = svgRef.current!;
       svg.innerHTML = ''; // Clear previous content
 
       // Set SVG attributes
-      svg.setAttribute('width', String(size + padding * 2));
-      svg.setAttribute('height', String(size + padding * 2));
-      svg.setAttribute('viewBox', `0 0 ${size + padding * 2} ${size + padding * 2}`);
+      svg.setAttribute('width', String(size));
+      svg.setAttribute('height', String(size));
+      svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
+      svg.setAttribute('shape-rendering', 'crispEdges');
 
       // Background
       const bgRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      bgRect.setAttribute('width', String(size + padding * 2));
-      bgRect.setAttribute('height', String(size + padding * 2));
+      bgRect.setAttribute('width', String(size));
+      bgRect.setAttribute('height', String(size));
       bgRect.setAttribute('fill', bgColor);
       svg.appendChild(bgRect);
 
@@ -61,7 +65,7 @@ export default function CustomQRCode({
       let centerArea: { row: number; col: number; size: number } | null = null;
       if (image) {
         // Use smaller image size to preserve more QR code data
-        const imageSizeInModules = Math.max(5, Math.min(9, Math.ceil((size * imageSize * 0.8) / moduleSize)));
+        const imageSizeInModules = Math.max(5, Math.min(9, Math.ceil((qrSize * imageSize * 0.8) / moduleSize)));
         const centerRow = Math.floor(moduleCount / 2);
         const centerCol = Math.floor(moduleCount / 2);
         const halfSize = Math.floor(imageSizeInModules / 2);
@@ -179,14 +183,13 @@ export default function CustomQRCode({
       // Step 3: Add center image if provided (on top of everything)
       if (image && centerArea) {
         const imageSizePx = centerArea.size * moduleSize * 0.9; // Slightly smaller than the cleared area
-        const totalSize = size + padding * 2;
-        const centerX = totalSize / 2 - imageSizePx / 2;
-        const centerY = totalSize / 2 - imageSizePx / 2;
+        const centerX = contentSize / 2 - imageSizePx / 2;
+        const centerY = contentSize / 2 - imageSizePx / 2;
 
         // Create background circle
         const bgCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        bgCircle.setAttribute('cx', String(totalSize / 2));
-        bgCircle.setAttribute('cy', String(totalSize / 2));
+        bgCircle.setAttribute('cx', String(contentSize / 2));
+        bgCircle.setAttribute('cy', String(contentSize / 2));
         bgCircle.setAttribute('r', String(imageSizePx / 2));
         bgCircle.setAttribute('fill', bgColor);
         svg.appendChild(bgCircle);
@@ -195,8 +198,8 @@ export default function CustomQRCode({
         const clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
         clipPath.setAttribute('id', 'image-clip');
         const clipCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        clipCircle.setAttribute('cx', String(totalSize / 2));
-        clipCircle.setAttribute('cy', String(totalSize / 2));
+        clipCircle.setAttribute('cx', String(contentSize / 2));
+        clipCircle.setAttribute('cy', String(contentSize / 2));
         clipCircle.setAttribute('r', String(imageSizePx / 2));
         clipPath.appendChild(clipCircle);
         svg.appendChild(clipPath);

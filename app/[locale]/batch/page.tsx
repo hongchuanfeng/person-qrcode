@@ -7,6 +7,7 @@ import QRCode from 'qrcode';
 import * as XLSX from 'xlsx';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import { jsPDF } from 'jspdf';
 
 type PlanKey = 'monthly' | 'quarterly' | 'yearly';
 
@@ -19,6 +20,8 @@ export default function BatchPage() {
   const [qrCodes, setQrCodes] = useState<{ content: string; dataUrl: string }[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isDownloadingZip, setIsDownloadingZip] = useState(false);
+  const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -128,6 +131,55 @@ export default function BatchPage() {
 
     setData(contents);
     setIsProcessing(false);
+  };
+
+  const createPdfDocument = async (codes: { content: string; dataUrl: string }[]) => {
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'pt',
+      format: 'a4'
+    });
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const marginX = 40;
+    const marginY = 40;
+    const gutter = 20;
+    const columns = 3;
+    const imageSize = Math.floor(
+      (pageWidth - marginX * 2 - gutter * (columns - 1)) / columns
+    );
+    const rowHeight = imageSize + 40;
+    let columnIndex = 0;
+    let cursorY = marginY;
+
+    codes.forEach((qr, index) => {
+      if (columnIndex === 0) {
+        if (cursorY + rowHeight > pageHeight - marginY) {
+          doc.addPage();
+          cursorY = marginY;
+        }
+      }
+
+      const positionX = marginX + columnIndex * (imageSize + gutter);
+      const label =
+        qr.content.length > 80 ? `${qr.content.slice(0, 77)}...` : qr.content;
+
+      doc.addImage(qr.dataUrl, 'PNG', positionX, cursorY, imageSize, imageSize);
+      doc.setFontSize(10);
+      doc.text(label || ' ', positionX, cursorY + imageSize + 14, {
+        maxWidth: imageSize
+      });
+
+      columnIndex += 1;
+
+      if (columnIndex === columns) {
+        columnIndex = 0;
+        cursorY += rowHeight;
+      }
+    });
+
+    return doc.output('blob');
   };
 
   // Check subscription status
@@ -302,15 +354,16 @@ export default function BatchPage() {
       return;
     }
 
+    setIsDownloadingZip(true);
+
     try {
       const zip = new JSZip();
 
       for (let i = 0; i < qrCodes.length; i++) {
         const { content, dataUrl } = qrCodes[i];
-        // Extract base64 data
         const base64Data = dataUrl.split(',')[1];
-        // Create filename from content (sanitize)
-        const filename = content
+        const filename =
+          content
           .substring(0, 50)
           .replace(/[^a-z0-9]/gi, '_')
           .toLowerCase() + `_${i + 1}.png`;
@@ -318,11 +371,35 @@ export default function BatchPage() {
         zip.file(filename, base64Data, { base64: true });
       }
 
+      const pdfBlob = await createPdfDocument(qrCodes);
+      zip.file('qrcodes.pdf', pdfBlob);
+
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       saveAs(zipBlob, 'qrcodes.zip');
     } catch (err) {
       console.error('Error creating ZIP:', err);
-      setError('Error creating ZIP file');
+      setError(t('error.zipError'));
+    } finally {
+      setIsDownloadingZip(false);
+    }
+  };
+
+  const downloadPdf = async () => {
+    if (qrCodes.length === 0) {
+      setError(t('error.noFile'));
+      return;
+    }
+
+    setIsDownloadingPdf(true);
+
+    try {
+      const pdfBlob = await createPdfDocument(qrCodes);
+      saveAs(pdfBlob, 'qrcodes.pdf');
+    } catch (err) {
+      console.error('Error creating PDF:', err);
+      setError(t('error.pdfError'));
+    } finally {
+      setIsDownloadingPdf(false);
     }
   };
 
@@ -611,8 +688,19 @@ export default function BatchPage() {
                   <p>{t('success.ready')}</p>
                 </div>
                 <div className="batch-actions">
-                  <button onClick={downloadZip} className="btn btn-primary">
-                    {t('download')}
+                  <button
+                    onClick={downloadZip}
+                    className="btn btn-primary"
+                    disabled={isDownloadingZip || isDownloadingPdf}
+                  >
+                    {isDownloadingZip ? t('downloadingZip') : t('downloadZip')}
+                  </button>
+                  <button
+                    onClick={downloadPdf}
+                    className="btn btn-secondary"
+                    disabled={isDownloadingPdf || isDownloadingZip}
+                  >
+                    {isDownloadingPdf ? t('downloadingPdf') : t('downloadPdf')}
                   </button>
                   <button onClick={reset} className="btn btn-secondary">
                     {t('reset')}

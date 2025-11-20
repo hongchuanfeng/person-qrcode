@@ -1,0 +1,18 @@
+需求：
+1、这个关键词：qr code picture scanner，做一个识别qrcode 码页面，
+
+功能说：
+
+上传图片，识别qrcode，把识别结果显示出来，
+还可以打开设备的摄像头识别qrcode码，把识别结果显示出来。
+
+加上功能说明和使用帮助，再加上功能问题反馈。
+
+在index页面的批量生成后面加上该菜单，
+
+要实现多语言切换功能，还要加上有灯光开关，还有相机开关。
+
+加上GA代码和google adsense 代码。
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7274710287377352"
+     crossorigin="anonymous"></script>
