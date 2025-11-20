@@ -183,13 +183,14 @@ export default function CustomQRCode({
       // Step 3: Add center image if provided (on top of everything)
       if (image && centerArea) {
         const imageSizePx = centerArea.size * moduleSize * 0.9; // Slightly smaller than the cleared area
-        const centerX = contentSize / 2 - imageSizePx / 2;
-        const centerY = contentSize / 2 - imageSizePx / 2;
+        const viewCenter = size / 2;
+        const centerX = viewCenter - imageSizePx / 2;
+        const centerY = viewCenter - imageSizePx / 2;
 
         // Create background circle
         const bgCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        bgCircle.setAttribute('cx', String(contentSize / 2));
-        bgCircle.setAttribute('cy', String(contentSize / 2));
+        bgCircle.setAttribute('cx', String(viewCenter));
+        bgCircle.setAttribute('cy', String(viewCenter));
         bgCircle.setAttribute('r', String(imageSizePx / 2));
         bgCircle.setAttribute('fill', bgColor);
         svg.appendChild(bgCircle);
@@ -198,8 +199,8 @@ export default function CustomQRCode({
         const clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
         clipPath.setAttribute('id', 'image-clip');
         const clipCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        clipCircle.setAttribute('cx', String(contentSize / 2));
-        clipCircle.setAttribute('cy', String(contentSize / 2));
+        clipCircle.setAttribute('cx', String(viewCenter));
+        clipCircle.setAttribute('cy', String(viewCenter));
         clipCircle.setAttribute('r', String(imageSizePx / 2));
         clipPath.appendChild(clipCircle);
         svg.appendChild(clipPath);
