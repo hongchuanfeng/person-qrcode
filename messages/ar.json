@@ -361,6 +361,7 @@
     "downloadingZip": "جارٍ إعداد ملف ZIP...",
     "downloadingPdf": "جارٍ تجهيز PDF...",
     "reset": "إعادة التعيين",
+    "freeUsageInfo": "المحاولات المجانية المتبقية: {remaining} من {limit}",
     "error": {
       "noFile": "يرجى اختيار ملف أولاً.",
       "invalidFormat": "صيغة غير مدعومة، استخدم CSV أو Excel.",
@@ -371,7 +372,8 @@
       "subscriptionRequired": "هذه الميزة تتطلب اشتراكاً فعالاً.",
       "subscriptionCheckFailed": "تعذر التحقق من الاشتراك، حاول لاحقاً.",
       "zipError": "تعذر إنشاء ملف ZIP.",
-      "pdfError": "تعذر إنشاء ملف PDF."
+      "pdfError": "تعذر إنشاء ملف PDF.",
+      "freeLimitReached": "استخدمت جميع المحاولات المجانية البالغ عددها {limit}. سجّل الدخول واشترك للمتابعة."
     },
     "success": {
       "generated": "تم إنشاء {count} رمزاً بنجاح",
@@ -385,7 +387,11 @@
     "qrColor": "لون الرمز",
     "bgColor": "لون الخلفية",
     "centerImage": "صورة وسطية (اختياري)",
-    "removeImage": "إزالة الصورة"
+    "removeImage": "إزالة الصورة",
+    "video": {
+      "title": "شاهد عرض إنشاء الرموز دفعة واحدة",
+      "description": "يوضح هذا الفيديو كيفية تجهيز ملف CSV/Excel، تشغيل التوليد وتنزيل النتائج بصيغة ZIP أو PDF."
+    }
   },
   "membership": {
     "title": "لوحة اشتراكي",

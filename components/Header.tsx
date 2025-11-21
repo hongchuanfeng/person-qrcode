@@ -144,6 +144,7 @@ export default function Header() {
               <option value="pt">Português</option>
               <option value="ar">العربية</option>
               <option value="es">Español</option>
+              <option value="ja">日本語</option>
             </select>
           </div>
         </div>

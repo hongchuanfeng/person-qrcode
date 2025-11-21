@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useTransition, useEffect } from 'react';
+import { useState, useRef, useTransition, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
 import QRCode from 'qrcode';
@@ -41,6 +41,27 @@ export default function BatchPage() {
   const { user, loading: authLoading, signInWithGoogle } = useAuth();
   const [isSubscribed, setIsSubscribed] = useState<boolean | null>(null);
   const [checkingSubscription, setCheckingSubscription] = useState(false);
+  const FREE_USAGE_LIMIT = 3;
+  const FREE_USAGE_STORAGE_KEY = 'batch_free_usage_count';
+  const [freeUsageCount, setFreeUsageCount] = useState(0);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const stored = Number(window.localStorage.getItem(FREE_USAGE_STORAGE_KEY) ?? '0');
+    if (!Number.isNaN(stored)) {
+      setFreeUsageCount(stored);
+    }
+  }, []);
+
+  const recordFreeUsage = useCallback(() => {
+    setFreeUsageCount((prev) => {
+      const next = prev + 1;
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(FREE_USAGE_STORAGE_KEY, String(next));
+      }
+      return next;
+    });
+  }, []);
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files?.[0];
@@ -214,39 +235,38 @@ export default function BatchPage() {
       return;
     }
 
-    // Check if user is logged in
-    if (!user) {
-      setError(t('error.loginRequired'));
-      // Optionally redirect to login
-      setTimeout(() => {
-        signInWithGoogle();
-      }, 2000);
+    // Check access rules
+    const hasFreeQuota = !user && freeUsageCount < FREE_USAGE_LIMIT;
+
+    if (!user && !hasFreeQuota) {
+      setError(t('error.freeLimitReached', { limit: FREE_USAGE_LIMIT }));
       return;
     }
 
-    // Check subscription status
-    if (isSubscribed === null) {
-      setCheckingSubscription(true);
-      try {
-        const response = await fetch('/api/subscriptions/check');
-        const result = await response.json();
-        setIsSubscribed(result.subscribed || false);
-        
-        if (!result.subscribed) {
-          setError(t('error.subscriptionRequired'));
+    if (user) {
+      if (isSubscribed === null) {
+        setCheckingSubscription(true);
+        try {
+          const response = await fetch('/api/subscriptions/check');
+          const result = await response.json();
+          setIsSubscribed(result.subscribed || false);
+
+          if (!result.subscribed) {
+            setError(t('error.subscriptionRequired'));
+            return;
+          }
+        } catch (error) {
+          console.error('Error checking subscription:', error);
+          setError(t('error.subscriptionCheckFailed'));
+          setCheckingSubscription(false);
           return;
+        } finally {
+          setCheckingSubscription(false);
         }
-      } catch (error) {
-        console.error('Error checking subscription:', error);
-        setError(t('error.subscriptionCheckFailed'));
-        setCheckingSubscription(false);
+      } else if (!isSubscribed) {
+        setError(t('error.subscriptionRequired'));
         return;
-      } finally {
-        setCheckingSubscription(false);
       }
-    } else if (!isSubscribed) {
-      setError(t('error.subscriptionRequired'));
-      return;
     }
 
     setIsGenerating(true);
@@ -340,6 +360,9 @@ export default function BatchPage() {
 
       setQrCodes(generated);
       setSuccess(t('success.generated', { count: generated.length }));
+      if (!user) {
+        recordFreeUsage();
+      }
       setIsGenerating(false);
     } catch (err) {
       console.error('Error generating QR codes:', err);
@@ -666,6 +689,17 @@ export default function BatchPage() {
               </div>
             )}
 
+            {data.length > 0 && (
+              <p className="helper-text" style={{ marginTop: '0.5rem' }}>
+                {user
+                  ? ''
+                  : t('freeUsageInfo', {
+                      remaining: Math.max(0, FREE_USAGE_LIMIT - freeUsageCount),
+                      limit: FREE_USAGE_LIMIT
+                    })}
+              </p>
+            )}
+
             {data.length > 0 && !isGenerating && qrCodes.length === 0 && (
               <button
                 onClick={generateQRCodes}
@@ -777,6 +811,21 @@ export default function BatchPage() {
           >
             {isPending ? tSubscribe('redirecting') : tSubscribe('checkout')}
           </button>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="video-demo">
+          <div className="video-demo__text">
+            <h2>{t('video.title')}</h2>
+            <p>{t('video.description')}</p>
+          </div>
+          <div className="video-demo__player">
+            <video controls preload="metadata" className="video-demo__video">
+              <source src="/video/batch.mp4" type="video/mp4" />
+              {t('video.description')}
+            </video>
+          </div>
         </div>
       </section>
     </div>

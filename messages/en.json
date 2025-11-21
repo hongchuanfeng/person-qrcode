@@ -361,6 +361,7 @@
     "downloadingZip": "Preparing ZIP...",
     "downloadingPdf": "Preparing PDF...",
     "reset": "Reset",
+    "freeUsageInfo": "Free batch uses remaining: {remaining} / {limit}",
     "error": {
       "noFile": "Please upload a file",
       "invalidFormat": "Invalid file format. Please upload CSV or Excel file.",
@@ -371,7 +372,8 @@
       "subscriptionRequired": "A subscription is required to use batch generation. Please subscribe to a plan first.",
       "subscriptionCheckFailed": "Failed to check subscription status. Please try again.",
       "zipError": "Error creating ZIP file. Please try again.",
-      "pdfError": "Error creating PDF file. Please try again."
+      "pdfError": "Error creating PDF file. Please try again.",
+      "freeLimitReached": "You have used all {limit} free batch generations. Please sign in and subscribe to continue."
     },
     "success": {
       "generated": "Successfully generated {count} QR codes",
@@ -385,7 +387,11 @@
     "qrColor": "QR Code Color",
     "bgColor": "Background Color",
     "centerImage": "Center Image (Optional)",
-    "removeImage": "Remove Image"
+    "removeImage": "Remove Image",
+    "video": {
+      "title": "Watch the batch generator in action",
+      "description": "This short video shows how to prepare your CSV/Excel file, run the generator, and download the results as ZIP or PDF."
+    }
   },
   "membership": {
     "title": "My Membership",

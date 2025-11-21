@@ -361,6 +361,7 @@
     "downloadingZip": "Preparando ZIP...",
     "downloadingPdf": "Preparando PDF...",
     "reset": "Reiniciar",
+    "freeUsageInfo": "Intentos gratuitos restantes: {remaining} / {limit}",
     "error": {
       "noFile": "Por favor, sube un archivo.",
       "invalidFormat": "Formato no válido. Usa CSV o Excel.",
@@ -371,7 +372,8 @@
       "subscriptionRequired": "Necesitas una suscripción activa para esta función.",
       "subscriptionCheckFailed": "No pudimos verificar tu suscripción.",
       "zipError": "Error al crear el ZIP.",
-      "pdfError": "Error al crear el PDF."
+      "pdfError": "Error al crear el PDF.",
+      "freeLimitReached": "Ya utilizaste los {limit} intentos gratuitos. Inicia sesión y suscríbete para continuar."
     },
     "success": {
       "generated": "Se generaron {count} QR correctamente",
@@ -385,7 +387,11 @@
     "qrColor": "Color del QR",
     "bgColor": "Color de fondo",
     "centerImage": "Imagen central (opcional)",
-    "removeImage": "Quitar imagen"
+    "removeImage": "Quitar imagen",
+    "video": {
+      "title": "Mira la demo del generador por lotes",
+      "description": "El video muestra cómo preparar el archivo CSV/Excel, ejecutar la generación y descargar los ZIP/PDF."
+    }
   },
   "membership": {
     "title": "Mi suscripción",

@@ -361,6 +361,7 @@
     "downloadingZip": "ZIP wird erstellt...",
     "downloadingPdf": "PDF wird erstellt...",
     "reset": "Zurücksetzen",
+    "freeUsageInfo": "Verbleibende Gratis-Läufe: {remaining} / {limit}",
     "error": {
       "noFile": "Bitte laden Sie eine Datei hoch.",
       "invalidFormat": "Ungültiges Format – bitte CSV oder Excel verwenden.",
@@ -371,7 +372,8 @@
       "subscriptionRequired": "Für die Stapelerstellung ist ein Abonnement nötig.",
       "subscriptionCheckFailed": "Überprüfung des Abos fehlgeschlagen.",
       "zipError": "ZIP-Datei konnte nicht erstellt werden.",
-      "pdfError": "PDF konnte nicht erstellt werden."
+      "pdfError": "PDF konnte nicht erstellt werden.",
+      "freeLimitReached": "Du hast alle {limit} kostenlosen Batch-Erstellungen genutzt. Bitte melde dich an und abonniere, um weiterzumachen."
     },
     "success": {
       "generated": "{count} QR-Codes erfolgreich erstellt",
@@ -385,7 +387,11 @@
     "qrColor": "QR-Farbe",
     "bgColor": "Hintergrundfarbe",
     "centerImage": "Logo/Bild (optional)",
-    "removeImage": "Bild entfernen"
+    "removeImage": "Bild entfernen",
+    "video": {
+      "title": "Video-Demo der Stapelgenerierung",
+      "description": "Dieses kurze Video zeigt, wie Sie CSV/Excel vorbereiten, den Generator starten und ZIP/PDF herunterladen."
+    }
   },
   "membership": {
     "title": "Meine Mitgliedschaft",

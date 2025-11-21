@@ -361,6 +361,7 @@
     "downloadingZip": "Preparando ZIP...",
     "downloadingPdf": "Preparando PDF...",
     "reset": "Reiniciar",
+    "freeUsageInfo": "Tentativas grátis restantes: {remaining} / {limit}",
     "error": {
       "noFile": "Envie um arquivo primeiro.",
       "invalidFormat": "Formato inválido. Utilize CSV ou Excel.",
@@ -371,7 +372,8 @@
       "subscriptionRequired": "É necessária uma assinatura ativa para usar o recurso.",
       "subscriptionCheckFailed": "Não conseguimos verificar sua assinatura.",
       "zipError": "Erro ao montar o arquivo ZIP.",
-      "pdfError": "Erro ao gerar o PDF."
+      "pdfError": "Erro ao gerar o PDF.",
+      "freeLimitReached": "Você já usou as {limit} tentativas gratuitas. Faça login e assine um plano para continuar."
     },
     "success": {
       "generated": "{count} QR codes gerados com sucesso",
@@ -385,7 +387,11 @@
     "qrColor": "Cor do código",
     "bgColor": "Cor de fundo",
     "centerImage": "Imagem central (opcional)",
-    "removeImage": "Remover imagem"
+    "removeImage": "Remover imagem",
+    "video": {
+      "title": "Veja o gerador em lote em ação",
+      "description": "O vídeo explica como preparar o arquivo CSV/Excel, executar a geração e baixar os resultados em ZIP ou PDF."
+    }
   },
   "membership": {
     "title": "Minha assinatura",

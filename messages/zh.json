@@ -361,6 +361,7 @@
     "downloadingZip": "正在打包ZIP...",
     "downloadingPdf": "正在生成PDF...",
     "reset": "重置",
+    "freeUsageInfo": "免费批量生成剩余次数：{remaining}/{limit}",
     "error": {
       "noFile": "请上传文件",
       "invalidFormat": "无效的文件格式。请上传CSV或Excel文件。",
@@ -371,7 +372,8 @@
       "subscriptionRequired": "批量生成功能需要订阅套餐。请先订阅套餐。",
       "subscriptionCheckFailed": "检查订阅状态失败。请重试。",
       "zipError": "打包ZIP文件失败，请重试。",
-      "pdfError": "生成PDF文件失败，请重试。"
+      "pdfError": "生成PDF文件失败，请重试。",
+      "freeLimitReached": "已用完{limit}次免费批量生成功能，请登录并订阅套餐后继续使用。"
     },
     "success": {
       "generated": "成功生成 {count} 个二维码",
@@ -385,7 +387,11 @@
     "qrColor": "二维码颜色",
     "bgColor": "背景颜色",
     "centerImage": "中心图片（可选）",
-    "removeImage": "移除图片"
+    "removeImage": "移除图片",
+    "video": {
+      "title": "查看批量生成功能演示",
+      "description": "该视频演示如何准备 CSV/Excel 文件、运行批量生成并将结果下载为 ZIP 或 PDF。"
+    }
   },
   "membership": {
     "title": "我的会员",
