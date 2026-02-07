@@ -2011,6 +2011,27 @@ main {
   color: var(--secondary-color);
 }
 
+.friend-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.friend-links li {
+  margin-bottom: 0 !important;
+}
+
+.friend-links a {
+  color: var(--text-secondary) !important;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.friend-links a:hover {
+  color: var(--primary-color) !important;
+  transform: translateX(5px);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .nav-links {

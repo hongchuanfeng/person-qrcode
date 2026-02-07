@@ -15,7 +15,16 @@
     "welcome": "Bem-vindo",
     "loading": "Carregando…",
     "membership": "Assinatura",
-    "scan": "Scanner"
+    "scan": "Scanner",
+    "friendLinks": "Links de amigos",
+    "friendLink1": "Processamento de imagem gratuito",
+    "friendLink2": "iceBreakGame",
+    "friendLink3": "Removedor de marca d'água de vídeo",
+    "friendLink4": "Conversor PDF",
+    "friendLink5": "Gerador de QR Code",
+    "friendLink6": "Gerador de código de barras",
+    "friendLink7": "Fatos da NBA",
+    "friendLink8": "Vídeo para texto"
   },
   "home": {
     "title": "Gerador de QR Code Personalizado",

@@ -15,7 +15,16 @@
     "welcome": "Welcome",
     "loading": "Loading...",
     "membership": "Membership",
-    "scan": "Scanner"
+    "scan": "Scanner",
+    "friendLinks": "Friend Links",
+    "friendLink1": "Free Image Processing",
+    "friendLink2": "iceBreakGame",
+    "friendLink3": "Video Watermark Remover",
+    "friendLink4": "PDF Converter",
+    "friendLink5": "Online QR Code Generator",
+    "friendLink6": "Online Barcode Generator",
+    "friendLink7": "NBA Fun Facts",
+    "friendLink8": "Video to Text"
   },
   "home": {
     "title": "Personalized QR Code Generator",

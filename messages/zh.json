@@ -15,7 +15,16 @@
     "welcome": "欢迎",
     "loading": "加载中...",
     "membership": "会员中心",
-    "scan": "扫码识别"
+    "scan": "扫码识别",
+    "friendLinks": "友情链接",
+    "friendLink1": "免费图片处理",
+    "friendLink2": "iceBreakGame",
+    "friendLink3": "视频去水印",
+    "friendLink4": "PDF转换工具",
+    "friendLink5": "在线生成二维码",
+    "friendLink6": "在线生成条码",
+    "friendLink7": "NBA趣事",
+    "friendLink8": "视频转文字"
   },
   "home": {
     "title": "个性化二维码生成器",

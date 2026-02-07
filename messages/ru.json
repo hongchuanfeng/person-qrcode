@@ -15,7 +15,16 @@
     "welcome": "Добро пожаловать",
     "loading": "Загрузка…",
     "membership": "Моё членство",
-    "scan": "Сканер"
+    "scan": "Сканер",
+    "friendLinks": "Дружеские ссылки",
+    "friendLink1": "Бесплатная обработка изображений",
+    "friendLink2": "iceBreakGame",
+    "friendLink3": "Удаление водяных знаков с видео",
+    "friendLink4": "Конвертер PDF",
+    "friendLink5": "Генератор QR-кодов",
+    "friendLink6": "Генератор штрих-кодов",
+    "friendLink7": "Интересные факты о NBA",
+    "friendLink8": "Видео в текст"
   },
   "home": {
     "title": "Персонализированный генератор QR‑кодов",

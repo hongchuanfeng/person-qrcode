@@ -15,7 +15,16 @@
     "welcome": "مرحباً بك",
     "loading": "جارٍ التحميل...",
     "membership": "اشتراكي",
-    "scan": "أداة المسح"
+    "scan": "أداة المسح",
+    "friendLinks": "روابط صديقة",
+    "friendLink1": "معالجة الصور المجانية",
+    "friendLink2": "iceBreakGame",
+    "friendLink3": "إزالة العلامة المائية من الفيديو",
+    "friendLink4": "محول PDF",
+    "friendLink5": "مولّد QR Code",
+    "friendLink6": "مولّد الباركود",
+    "friendLink7": "حقائق NBA",
+    "friendLink8": "فيديو إلى نص"
   },
   "home": {
     "title": "مولّد QR مخصص",
