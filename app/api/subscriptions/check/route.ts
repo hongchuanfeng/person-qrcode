@@ -1,25 +1,20 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/utils/supabase/server';
-import { hasActiveSubscription } from '@/utils/supabase/subscriptions';
+import { getCurrentUserServer } from '@/utils/mysql/auth';
+import { hasActiveSubscription } from '@/utils/mysql/subscriptions';
 
-export async function GET(request: Request) {
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+export async function GET() {
   try {
-    const supabase = await createClient();
-    
-    // Get current user
-    const {
-      data: { user },
-      error: authError
-    } = await supabase.auth.getUser();
-
-    if (authError || !user) {
+    const user = await getCurrentUserServer();
+    if (!user) {
       return NextResponse.json(
         { authenticated: false, subscribed: false },
         { status: 401 }
       );
     }
 
-    // Check subscription status
     const isSubscribed = await hasActiveSubscription(user.id);
 
     return NextResponse.json({
@@ -35,4 +30,3 @@ export async function GET(request: Request) {
     );
   }
 }
-

@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "home": "ホーム",
     "about": "私たちについて",
@@ -12,6 +12,42 @@
     "signIn": "ログイン",
     "signOut": "ログアウト",
     "signInWithGoogle": "Googleでログイン",
+    "signUp": "新規登録",
+    "signInWithEmail": "メールでログイン",
+    "registerWithEmail": "メールで登録",
+    "haveAccount": "すでにアカウントをお持ちですか？",
+    "noAccount": "アカウントをお持ちでない方は？",
+    "signInInstead": "ログインする",
+    "registerInstead": "アカウントを作成",
+    "auth": {
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "confirmPassword": "パスワード（確認）",
+      "displayName": "表示名（任意）",
+      "emailPlaceholder": "you@example.com",
+      "passwordPlaceholder": "6文字以上",
+      "signInTitle": "おかえりなさい",
+      "signInSubtitle": "メールアドレスとパスワードでログインしてください。",
+      "signUpTitle": "アカウントを作成",
+      "signUpSubtitle": "メールアドレスとパスワードで登録します。",
+      "submitSignIn": "ログイン",
+      "submitSignUp": "アカウントを作成",
+      "submitting": "ログイン中...",
+      "submittingSignUp": "作成中...",
+      "passwordMismatch": "パスワードが一致しません。",
+      "afterRegister": "アカウントが作成され、ログインしました。"
+    },
+    "credits": "クレジット",
+    "creditsUnit": "pt",
+    "promo": {
+      "signupBonusBadge": "登録で 500 クレジットプレゼント",
+      "signupBonusTitle": "新規ユーザー特典：登録で 500 クレジット",
+      "signupBonusDescription": "今すぐアカウントを作成すると、500 クレジットをプレゼント。一括生成などのプレミアム機能でお使いいただけます。",
+      "signupBonusCta": "無料登録で 500 クレジットを獲得",
+      "creditsHelp": "クレジットで一括生成などのプレミアム機能が使えます。新規ユーザーは 500 クレジットをプレゼント。",
+      "creditsEarned": "500 クレジットを獲得しました！",
+      "creditsEarnedHint": "クレジットはアカウントに追加され、すぐに使えます。"
+    },
     "welcome": "ようこそ",
     "loading": "読み込み中...",
     "membership": "マイサブスクリプション",

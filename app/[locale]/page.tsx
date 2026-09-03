@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import QRCodeGenerator from '@/components/QRCodeGenerator';
 import SubscriptionPlans from '@/components/SubscriptionPlans';
+import SignupBonusBanner from '@/components/SignupBonusBanner';
 import { Metadata } from 'next';
 
 export async function generateMetadata({
@@ -39,6 +40,8 @@ export default async function HomePage({
         <p className="subtitle">{t('subtitle')}</p>
         <p className="description">{t('description')}</p>
       </section>
+
+      <SignupBonusBanner />
 
       <section className="get-started-section">
         <h2 className="get-started-title">{t('getStarted.title')}</h2>

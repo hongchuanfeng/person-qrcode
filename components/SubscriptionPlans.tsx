@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 
 type PlanKey = 'monthly' | 'quarterly' | 'yearly';
@@ -10,16 +11,21 @@ export default function SubscriptionPlans() {
   const t = useTranslations('subscribe');
   const tCommon = useTranslations('common');
   const locale = useLocale();
-  const { user, loading: authLoading, signInWithGoogle } = useAuth();
+  const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
   const [selectedPlan, setSelectedPlan] = useState<PlanKey>('monthly');
   const [subscribeError, setSubscribeError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+
+  const goToSignIn = () => {
+    router.push(`/signin?next=${encodeURIComponent(`/${locale}/subscribe`)}`);
+  };
 
   const handleSubscribe = () => {
     // This function should only be called when user is logged in
     // The button logic ensures this, but we add a safety check
     if (!user) {
-      signInWithGoogle();
+      goToSignIn();
       return;
     }
 
@@ -125,10 +131,10 @@ export default function SubscriptionPlans() {
         ) : !user ? (
           <button
             className="cta-button"
-            onClick={signInWithGoogle}
+            onClick={goToSignIn}
             type="button"
           >
-            {tCommon('signInWithGoogle')}
+            {tCommon('signInWithEmail')}
           </button>
         ) : (
           <button

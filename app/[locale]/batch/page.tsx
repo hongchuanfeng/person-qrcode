@@ -38,7 +38,7 @@ export default function BatchPage() {
   const [isPending, startTransition] = useTransition();
   
   // Auth state
-  const { user, loading: authLoading, signInWithGoogle } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [isSubscribed, setIsSubscribed] = useState<boolean | null>(null);
   const [checkingSubscription, setCheckingSubscription] = useState(false);
   const FREE_USAGE_LIMIT = 3;

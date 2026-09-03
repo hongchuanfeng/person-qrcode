@@ -1,110 +1,103 @@
-# Google 登录功能使用说明
+# 邮箱注册与登录使用说明
 
-本文档详细说明了如何使用已实现的 Supabase Google 登录功能。
+本项目已经把原来基于 Supabase 的 Google OAuth 登录迁移到了**自建的 MySQL + 邮箱/密码**登录体系。
+用户可以使用邮箱注册账号，然后通过邮箱 + 密码登录；登录态通过 HTTP-only Cookie 维持。
 
 ## 功能概述
 
-已成功集成 Supabase Google 登录功能，用户可以通过 Google 账号登录网站。登录后会自动保持登录状态，用户信息会显示在导航栏中。
-
-## 已实现的功能
-
-1. ✅ Google OAuth 登录集成
-2. ✅ 自动登录状态管理
-3. ✅ 用户信息显示（显示用户名/邮箱）
-4. ✅ 登出功能
-5. ✅ 多语言支持（英文/中文）
-6. ✅ 响应式设计（支持移动端）
-7. ✅ 登录按钮位置：在语言切换按钮前面
+- 邮箱 + 密码注册与登录
+- bcrypt 哈希存储密码
+- 基于 HTTP-only Cookie 的会话
+- 多语言支持（en/zh/de/fr/ru/pt/ar/es/ja）
+- 响应式 UI（兼容移动端）
+- 注册/登录按钮位于 Header 右上角
 
 ## 文件结构
 
 ```
-qrcode_web/
+person-qrcode/
 ├── utils/
-│   └── supabase/
-│       ├── client.ts          # 客户端 Supabase 实例
-│       └── server.ts          # 服务端 Supabase 实例
+│   └── mysql/
+│       ├── pool.ts          # MySQL 连接池
+│       ├── users.ts         # 用户表 CRUD
+│       ├── sessions.ts      # 会话表 CRUD
+│       ├── subscriptions.ts # 订阅表 CRUD
+│       ├── auth.ts          # bcrypt + Cookie 辅助函数
+│       └── heartbeat-log.ts # 心跳日志写入
 ├── contexts/
-│   └── AuthContext.tsx        # 认证上下文提供者
-├── app/
-│   └── auth/
-│       └── callback/
-│           └── route.ts       # OAuth 回调处理
+│   └── AuthContext.tsx      # 全局认证上下文（替换原 Supabase 版本）
 ├── components/
-│   └── Header.tsx             # 已更新，包含登录按钮
-├── messages/
-│   ├── en.json                # 已添加登录相关翻译
-│   └── zh.json                # 已添加登录相关翻译
-└── env.example                # 已添加 Supabase 配置
+│   ├── AuthForm.tsx         # 登录/注册表单
+│   └── Header.tsx           # 顶部导航（含登录/注册按钮）
+├── app/
+│   ├── signin/page.tsx      # /signin 顶层路由
+│   ├── signup/page.tsx      # /signup 顶层路由
+│   ├── [locale]/signin/page.tsx
+│   ├── [locale]/signup/page.tsx
+│   ├── auth/callback/route.ts # 旧 OAuth 回调占位（仅做重定向）
+│   └── api/
+│       └── auth/
+│           ├── register/route.ts  # POST 注册
+│           ├── login/route.ts     # POST 登录
+│           ├── logout/route.ts    # POST 登出
+│           └── session/route.ts   # GET 当前会话
+├── scripts/
+│   ├── mysql_schema.sql     # MySQL 表结构脚本
+│   └── init-mysql.js        # 通过 Node 执行上面 SQL 的脚本
+└── env.example              # 已切换到 MYSQL_* 变量
 ```
 
 ## 环境变量配置
 
-### 1. 创建 `.env.local` 文件
-
-如果还没有 `.env.local` 文件，请从 `env.example` 复制：
-
-```bash
-cp env.example .env.local
-```
-
-### 2. 配置 Supabase 环境变量
-
-在 `.env.local` 文件中，确保包含以下配置：
+`.env.local` 中需要包含 MySQL 配置（其他变量保持不变）：
 
 ```env
-# Supabase Configuration
-NEXT_PUBLIC_SUPABASE_URL=https://mthqwnbjxfikntnpwrnw.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aHF3bmJqeGZpa250bnB3cm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMTQyMDMsImV4cCI6MjA3ODc5MDIwM30.ilF2ytyOX8njMTFNHBwyNnMEvVIduCfHEwCSkAtKT28
+CREEM_API_KEY=creem_4QGhR5aZTjFxJELOoLmQa6
+APP_BASE_URL=http://localhost:3000
+CREEM_WEBHOOK_SECRET=replace-with-strong-secret
+
+MYSQL_HOST=127.0.0.1
+MYSQL_PORT=3306
+MYSQL_USER=person_qrcode
+MYSQL_PASSWORD=replace-with-strong-password
+MYSQL_DATABASE=person_qrcode
+MYSQL_POOL_LIMIT=10
+
+SUBSCRIPTION_TEST_SECRET=replace-with-test-secret
 ```
 
-**注意**：这些值已经在 `env.example` 中配置好了，如果使用提供的 Supabase 项目，无需修改。
+## 初始化 MySQL 表
 
-## Supabase 配置步骤
+### 方式 1：使用 mysql CLI
 
-### 1. 在 Supabase 控制台配置 Google OAuth
+```bash
+mysql -h 127.0.0.1 -u root -p person_qrcode < scripts/mysql_schema.sql
+```
 
-1. 登录 [Supabase Dashboard](https://app.supabase.com/)
-2. 选择项目：`mthqwnbjxfikntnpwrnw`
-3. 进入 **Authentication** > **Providers**
-4. 找到 **Google** 提供商并启用它
-5. 配置 Google OAuth：
-   - 需要从 Google Cloud Console 获取：
-     - **Client ID**
-     - **Client Secret**
-   - 在 Supabase 中填入这些值
-   - 设置 **Redirect URL** 为：`https://mthqwnbjxfikntnpwrnw.supabase.co/auth/v1/callback`
+### 方式 2：通过 npm 脚本
 
-### 2. Google Cloud Console 配置
-
-1. 访问 [Google Cloud Console](https://console.cloud.google.com/)
-2. 创建新项目或选择现有项目
-3. 启用 **Google+ API**
-4. 创建 **OAuth 2.0 客户端 ID**：
-   - 应用类型：Web 应用
-   - 授权重定向 URI：
-     - 开发环境：`http://localhost:3000/auth/callback`
-     - 生产环境：`https://yourdomain.com/auth/callback`
-     - Supabase 回调：`https://mthqwnbjxfikntnpwrnw.supabase.co/auth/v1/callback`
-5. 复制 **Client ID** 和 **Client Secret** 到 Supabase
+```bash
+npm run db:init
+```
 
 ## 安装依赖
-
-确保已安装所有必要的依赖：
 
 ```bash
 npm install
 ```
 
-如果之前没有安装 Supabase 相关包，运行：
+如果之前已经安装过 Supabase 相关包，可以删除：
 
 ```bash
-npm install @supabase/supabase-js @supabase/ssr
+npm uninstall @supabase/supabase-js @supabase/ssr
 ```
 
-## 运行项目
+新增的依赖：
 
-### 开发环境
+- `mysql2`：MySQL 驱动
+- `bcryptjs`：密码哈希
+
+## 运行项目
 
 ```bash
 npm run dev
@@ -112,148 +105,96 @@ npm run dev
 
 访问 `http://localhost:3000` 查看网站。
 
-### 生产环境
-
-```bash
-npm run build
-npm run start
-```
-
 ## 使用说明
 
-### 用户登录流程
+### 注册流程
 
-1. **点击登录按钮**
-   - 在导航栏右侧，语言切换按钮前面，有一个 "Sign in with Google" 按钮（英文）或 "使用 Google 登录" 按钮（中文）
+1. 点击 Header 右上角的“使用邮箱注册”按钮
+2. 填写邮箱、密码（至少 6 位）、可选昵称
+3. 提交后会自动创建账号并登录
 
-2. **Google 授权**
-   - 点击按钮后，会跳转到 Google 登录页面
-   - 用户选择 Google 账号并授权
+### 登录流程
 
-3. **自动登录**
-   - 授权成功后，自动跳转回网站
-   - 用户信息会显示在导航栏中
-   - 显示格式：`欢迎, [用户名]` 或 `Welcome, [username]`
+1. 点击 Header 右上角的“使用邮箱登录”按钮
+2. 填写已注册的邮箱和密码
+3. 成功后跳转回来源页面
 
-4. **登出**
-   - 点击 "Sign Out" 或 "登出" 按钮即可退出登录
+### 登出
 
-### 登录状态
+点击用户菜单中的“登出”即可。
 
-- **未登录**：显示 "Sign in with Google" / "使用 Google 登录" 按钮
-- **已登录**：显示用户信息和 "Sign Out" / "登出" 按钮
-- **加载中**：显示 "Loading..." / "加载中..."
+## API 接口
 
-## 代码说明
+| Method | Path | 说明 |
+| --- | --- | --- |
+| POST | `/api/auth/register` | 注册新账号，自动赠送 500 积分并写入会话，返回 `signupBonus` |
+| POST | `/api/auth/login` | 邮箱 + 密码登录 |
+| POST | `/api/auth/logout` | 销毁当前会话 |
+| GET | `/api/auth/session` | 获取当前会话用户（含 `credits`） |
 
-### 认证上下文 (`contexts/AuthContext.tsx`)
+## 数据库表结构
 
-提供全局认证状态管理：
+详见 `scripts/mysql_schema.sql`：
 
-```typescript
-const { user, session, loading, signInWithGoogle, signOut } = useAuth();
+- `users`：存储用户邮箱、密码哈希、昵称、邮箱验证时间、**积分余额（credits）**
+- `user_sessions`：存储会话令牌 + 过期时间
+- `subscriptions`：用户订阅记录
+- `heartbeat_logs`：应用保活心跳日志
+- `credit_transactions`：积分变动流水（注册赠送、消费、运营调整等）
+
+## 初始化 / 迁移数据库
+
+**全新部署：**
+
+```bash
+node scripts/init-mysql.js
 ```
 
-- `user`: 当前登录用户对象（null 如果未登录）
-- `session`: 当前会话对象
-- `loading`: 是否正在加载认证状态
-- `signInWithGoogle()`: 触发 Google 登录
-- `signOut()`: 登出当前用户
+**已有旧库（缺 `credits` 列 / `credit_transactions` 表）：**
 
-### Header 组件 (`components/Header.tsx`)
+```bash
+# 仅补字段、建表，不动老用户积分
+node scripts/migrate-credits.js
 
-已更新，包含登录功能：
+# 给所有 credits=0 的老用户一次性补发 500 积分
+node scripts/migrate-credits.js --grant-existing
+```
 
-- 使用 `useAuth()` hook 获取认证状态
-- 根据登录状态显示不同的 UI
-- 登录按钮位于语言切换按钮前面
+迁移脚本会幂等地检查 `information_schema`，不会重复添加列或表。
 
-### OAuth 回调 (`app/auth/callback/route.ts`)
+## 新用户积分奖励
 
-处理 Google OAuth 回调：
+注册即送 500 积分（常量 `SIGNUP_BONUS_CREDITS`，见 `utils/mysql/credits.ts`）。
+- 注册接口 `/api/auth/register` 会写入 `users.credits = 500` 并在 `credit_transactions` 留下一条 `signup_bonus` 流水。
+- 登录后右上角会显示金色积分徽章，悬浮菜单里也能看到完整余额。
+- 首页顶部会展示醒目的"注册即送 500 积分"横幅（仅未登录用户可见）。
 
-- 接收授权码
-- 与 Supabase 交换会话
-- 重定向回原页面
+## 迁移提示
 
-## 多语言支持
-
-登录相关的文本已添加到翻译文件：
-
-**英文** (`messages/en.json`):
-- `signIn`: "Sign In"
-- `signOut`: "Sign Out"
-- `signInWithGoogle`: "Sign in with Google"
-- `welcome`: "Welcome"
-- `loading`: "Loading..."
-
-**中文** (`messages/zh.json`):
-- `signIn`: "登录"
-- `signOut`: "登出"
-- `signInWithGoogle`: "使用 Google 登录"
-- `welcome`: "欢迎"
-- `loading`: "加载中..."
-
-## 样式说明
-
-登录按钮和用户信息的样式已添加到 `app/globals.css`：
-
-- `.auth-button`: 登录/登出按钮样式
-- `.user-info`: 用户信息容器
-- `.user-name`: 用户名显示
-- `.header-actions`: 头部操作区域（包含登录和语言切换）
-
-## 故障排除
-
-### 1. 登录按钮不显示
-
-- 检查 `.env.local` 文件是否存在且包含 Supabase 配置
-- 确认环境变量名称正确（必须以 `NEXT_PUBLIC_` 开头）
-- 重启开发服务器
-
-### 2. Google 登录失败
-
-- 检查 Supabase 中 Google 提供商是否已启用
-- 确认 Google Cloud Console 中的重定向 URI 配置正确
-- 检查浏览器控制台是否有错误信息
-
-### 3. 登录后立即退出
-
-- 检查 Supabase 项目设置中的 Site URL 是否正确
-- 确认回调 URL 配置正确
-
-### 4. 环境变量未生效
-
-- 确保变量名以 `NEXT_PUBLIC_` 开头（客户端可访问）
-- 重启开发服务器
-- 清除浏览器缓存
+- 旧版本基于 Supabase Auth 注册的用户**无法自动迁移**到 MySQL，因为 Supabase 的密码哈希使用其专有算法。请让用户重新注册。
+- 原有的 `subscriptions` / `heartbeat_logs` 数据可以手动迁移到 MySQL，字段含义保持一致。
 
 ## 安全注意事项
 
-1. **不要提交 `.env.local` 到版本控制**
-   - 确保 `.env.local` 在 `.gitignore` 中
+1. **不要提交 `.env.local`** 到版本控制
+2. 生产环境务必使用强密码，并启用 HTTPS（让 Cookie 的 `secure` 选项生效）
+3. 密码使用 bcrypt 哈希（10 rounds）存储，明文不会进入数据库
+4. 会话 Cookie 始终是 HTTP-only，避免被前端 JS 读取
 
-2. **生产环境配置**
-   - 在生产环境中使用正确的 Supabase URL 和密钥
-   - 确保 Google OAuth 重定向 URI 包含生产域名
+## 故障排除
 
-3. **API 密钥安全**
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` 是公开的，但 Supabase 有行级安全策略保护
-   - 不要在客户端代码中暴露服务端密钥
+### 1. 注册/登录报 500
 
-## 下一步
+检查 `.env.local` 中的 `MYSQL_*` 变量是否填写正确，并确认数据库已经运行过 `scripts/mysql_schema.sql`。
 
-登录功能已完全实现。你可以：
+### 2. 已登录但页面仍然提示未登录
 
-1. 在需要用户认证的页面中使用 `useAuth()` hook
-2. 根据用户状态显示不同的内容
-3. 在 API 路由中使用服务端 Supabase 客户端验证用户身份
-4. 实现基于用户的数据存储和检索
+- 确认浏览器允许 HTTP-only Cookie
+- 确认 `/api/auth/session` 返回了 `authenticated: true`
 
-## 技术支持
+### 3. 想清空所有用户
 
-如有问题，请检查：
-- Supabase 文档：https://supabase.com/docs
-- Next.js 文档：https://nextjs.org/docs
-- Google OAuth 文档：https://developers.google.com/identity/protocols/oauth2
-
+```sql
+DELETE FROM user_sessions;
+DELETE FROM users;
+```

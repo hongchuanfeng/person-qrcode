@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { insertHeartbeatLog } from '@/utils/supabase/heartbeat-log';
+import { insertHeartbeatLog } from '@/utils/mysql/heartbeat-log';
 
 // 强制动态渲染，禁用所有缓存
 export const dynamic = 'force-dynamic';
@@ -51,6 +51,3 @@ export async function GET() {
     );
   }
 }
-
-
-

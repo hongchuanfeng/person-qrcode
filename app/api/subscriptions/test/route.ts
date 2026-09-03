@@ -1,10 +1,15 @@
 import { NextResponse } from 'next/server';
-import { createServiceRoleClient } from '@/utils/supabase/service-role';
+import { findUserById } from '@/utils/mysql/users';
 import {
   calculateEndDate,
   getPlanTypeFromProductId,
   type PlanType
 } from '@/utils/subscription-helper';
+import { getPool, toMySqlDateTime } from '@/utils/mysql/pool';
+import { randomBytes } from 'crypto';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 interface TestSubscriptionRequest {
   userId: string;
@@ -21,6 +26,17 @@ const TEST_SECRET = process.env.SUBSCRIPTION_TEST_SECRET;
 
 function unauthorized(message = 'Unauthorized') {
   return NextResponse.json({ error: message }, { status: 401 });
+}
+
+function generateId(): string {
+  const bytes = randomBytes(16);
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const hex = bytes.toString('hex');
+  return (
+    `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-` +
+    `${hex.slice(16, 20)}-${hex.slice(20, 32)}`
+  );
 }
 
 export async function POST(request: Request) {
@@ -55,6 +71,15 @@ export async function POST(request: Request) {
     );
   }
 
+  // 校验目标用户确实存在（避免测试 API 把数据写入不存在的用户）
+  const existingUser = await findUserById(userId);
+  if (!existingUser) {
+    return NextResponse.json(
+      { error: 'User does not exist.' },
+      { status: 404 }
+    );
+  }
+
   const planType = explicitPlanType ?? getPlanTypeFromProductId(productId);
   if (!planType) {
     return NextResponse.json(
@@ -68,35 +93,35 @@ export async function POST(request: Request) {
     ? new Date(body.endDate)
     : calculateEndDate(new Date(startDate), planType);
 
-  const supabase = createServiceRoleClient();
+  const pool = getPool();
+  const id = generateId();
+  await pool.execute(
+    `INSERT INTO subscriptions
+       (id, user_id, product_id, plan_type, start_date, end_date,
+        order_id, subscription_id, status)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+      id,
+      userId,
+      productId,
+      planType,
+      toMySqlDateTime(startDate),
+      toMySqlDateTime(endDate),
+      body.orderId ?? null,
+      body.subscriptionId ?? null,
+      body.status ?? 'active'
+    ]
+  );
 
-  const { data, error } = await supabase
-    .from('subscriptions')
-    .insert({
-      user_id: userId,
-      product_id: productId,
-      plan_type: planType,
-      start_date: startDate.toISOString(),
-      end_date: endDate.toISOString(),
-      order_id: body.orderId ?? null,
-      subscription_id: body.subscriptionId ?? null,
-      status: body.status ?? 'active'
-    })
-    .select()
-    .single();
-
-  if (error) {
-    console.error('[Subscription Test] Insert failed:', error);
-    return NextResponse.json(
-      { error: 'Failed to insert test subscription.', details: error.message },
-      { status: 500 }
-    );
-  }
+  const [rows] = (await pool.execute(
+    `SELECT id, user_id, product_id, plan_type, order_id, subscription_id,
+            start_date, end_date, status, created_at, updated_at
+       FROM subscriptions WHERE id = ? LIMIT 1`,
+    [id]
+  )) as [any[], unknown];
 
   return NextResponse.json({
     success: true,
-    subscription: data
+    subscription: rows[0]
   });
 }
-
-

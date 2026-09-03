@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/utils/supabase/server';
-import { createSubscription } from '@/utils/supabase/subscriptions';
+import { getCurrentUserServer } from '@/utils/mysql/auth';
+import { createSubscription } from '@/utils/mysql/subscriptions';
 import { getPlanTypeFromProductId, calculateEndDate } from '@/utils/subscription-helper';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 type CreateSubscriptionRequest = {
   userId: string;
@@ -23,13 +26,8 @@ export async function POST(request: Request) {
     }
 
     // Verify the user making the request
-    const supabase = await createClient();
-    const {
-      data: { user },
-      error: authError
-    } = await supabase.auth.getUser();
-
-    if (authError || !user || user.id !== userId) {
+    const user = await getCurrentUserServer();
+    if (!user || user.id !== userId) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
@@ -81,4 +79,3 @@ export async function POST(request: Request) {
     );
   }
 }
-

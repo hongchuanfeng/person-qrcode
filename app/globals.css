@@ -113,15 +113,33 @@ button {
   white-space: nowrap;
 }
 
+.auth-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .auth-button.sign-in {
   background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
   border: none;
+  color: #fff;
 }
 
 .auth-button.sign-in:hover {
   background: linear-gradient(120deg, var(--primary-dark), var(--primary-color));
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+.auth-button.sign-up {
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.auth-button.sign-up:hover {
+  background: rgba(14, 165, 233, 0.08);
+  transform: translateY(-1px);
 }
 
 .auth-button.sign-out {
@@ -2211,4 +2229,256 @@ main {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+}
+
+/* ============================================================
+   Auth Form Styles
+   ============================================================ */
+
+.auth-card {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.auth-field input {
+  padding: 0.65rem 0.875rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-field input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+.auth-field input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-error {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  text-align: center;
+  margin: 0;
+}
+
+.auth-submit {
+  margin-top: 0.25rem;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.auth-secondary {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.auth-secondary-link {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.auth-secondary-link:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   Credits & Signup Bonus
+   ============================================================ */
+
+.user-credits-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #facc15, #f59e0b);
+  color: #1f2937;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.user-credits-badge svg {
+  color: #1f2937;
+}
+
+.user-menu-credits {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.user-menu-credits strong {
+  color: var(--primary-color);
+}
+
+.signup-bonus-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 2rem auto 3rem;
+  padding: 2.5rem 2rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(120deg, #fef3c7, #fde68a, #fcd34d);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.18);
+  overflow: hidden;
+}
+
+.signup-bonus-content {
+  flex: 1;
+  max-width: 60%;
+}
+
+.signup-bonus-badge {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  background: rgba(180, 83, 9, 0.15);
+  color: #b45309;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.signup-bonus-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #78350f;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+}
+
+.signup-bonus-description {
+  font-size: 1rem;
+  color: #92400e;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+}
+
+.signup-bonus-cta {
+  background: linear-gradient(120deg, #b45309, #d97706);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 4px 14px rgba(180, 83, 9, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.signup-bonus-cta:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(180, 83, 9, 0.4);
+}
+
+.signup-bonus-help {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  color: #92400e;
+  opacity: 0.85;
+}
+
+.signup-bonus-illustration {
+  flex: 0 0 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.signup-bonus-coin {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fef08a, #facc15 60%, #ca8a04 100%);
+  color: #78350f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  box-shadow: 0 8px 22px rgba(180, 83, 9, 0.35), inset 0 4px 8px rgba(255, 255, 255, 0.5);
+}
+
+.signup-bonus-coin--small {
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  background: radial-gradient(circle at 30% 30%, #fde68a, #f59e0b 60%, #b45309 100%);
+}
+
+@media (max-width: 768px) {
+  .signup-bonus-banner {
+    flex-direction: column;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .signup-bonus-content {
+    max-width: 100%;
+  }
+  .signup-bonus-illustration {
+    flex: 0 0 auto;
+  }
+  .signup-bonus-title {
+    font-size: 1.4rem;
+  }
+  .signup-bonus-coin {
+    width: 100px;
+    height: 100px;
+    font-size: 1.75rem;
+  }
+}
+
+.signup-bonus-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.12), rgba(245, 158, 11, 0.04));
+  border: 1px dashed rgba(245, 158, 11, 0.5);
+  border-radius: 0.6rem;
+  color: #b45309;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.signup-bonus-strip-icon {
+  color: #f59e0b;
+  font-size: 1.1rem;
 }

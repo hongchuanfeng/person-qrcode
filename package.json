@@ -1,24 +1,26 @@
 {
-  "name": "creem-test",
-  "version": "0.1.0",
+  "name": "person-qrcode",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "heartbeat": "node scripts/heartbeat-logger.js"
+    "heartbeat": "node scripts/heartbeat-logger.js",
+    "db:init": "node scripts/init-mysql.js"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.7.0",
-    "@supabase/supabase-js": "^2.81.1",
+    "@types/bcryptjs": "^2.4.6",
     "@types/file-saver": "^2.0.7",
     "@types/qrcode": "^1.5.6",
     "@zxing/browser": "^0.1.5",
+    "bcryptjs": "^2.4.3",
     "file-saver": "^2.0.5",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.4",
     "jszip": "^3.10.1",
+    "mysql2": "^3.11.0",
     "next": "14.2.4",
     "next-intl": "^3.0.0",
     "qrcode": "^1.5.4",

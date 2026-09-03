@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import { createHmac } from 'crypto';
-import { createServiceRoleClient } from '@/utils/supabase/service-role';
+import {
+  findLatestSubscription,
+  updateSubscription,
+  createSubscription
+} from '@/utils/mysql/subscriptions';
 import {
   getPlanTypeFromProductId,
   calculateEndDate,
@@ -308,49 +312,32 @@ async function handleWebhook(request: Request) {
     const resolvedProductId = productId as string;
     const resolvedPlanType = planType as PlanType;
 
-    const supabase = createServiceRoleClient();
+    const existing = await findLatestSubscription(resolvedUserId);
 
-    const { data: existing, error: fetchError } = await supabase
-      .from('subscriptions')
-      .select('id')
-      .eq('user_id', resolvedUserId)
-      .order('created_at', { ascending: false })
-      .limit(1)
-      .maybeSingle();
-
-    if (fetchError) {
-      console.error('Failed to locate existing subscription', fetchError);
-      return NextResponse.json({ error: 'Failed to load subscription' }, { status: 500 });
-    }
-
-    const record = {
-      user_id: resolvedUserId,
-      product_id: resolvedProductId,
-      plan_type: resolvedPlanType,
-      order_id: orderId ?? null,
-      subscription_id: subscriptionId,
-      start_date: startDate,
-      end_date: endDate,
-      status: subscription.status ?? normalized.status ?? 'active',
-      updated_at: new Date().toISOString()
-    };
-    if (existing?.id) {
-      const { error: updateError } = await supabase
-        .from('subscriptions')
-        .update(record)
-        .eq('id', existing.id);
-
-      if (updateError) {
-        console.error('Failed to update subscription', updateError);
-        return NextResponse.json({ error: 'Failed to update subscription' }, { status: 500 });
-      }
+    if (existing) {
+      await updateSubscription(existing.id, {
+        product_id: resolvedProductId,
+        plan_type: resolvedPlanType,
+        order_id: orderId,
+        subscription_id: subscriptionId,
+        start_date: startDate,
+        end_date: endDate,
+        status: subscription.status ?? normalized.status ?? 'active'
+      });
     } else {
-      const { error: insertError } = await supabase
-        .from('subscriptions')
-        .insert({ ...record, status: record.status ?? 'active' });
-
-      if (insertError) {
-        console.error('Failed to insert subscription', insertError);
+      const created = await createSubscription(
+        resolvedUserId,
+        resolvedProductId,
+        resolvedPlanType,
+        new Date(startDate),
+        new Date(endDate),
+        {
+          orderId: orderId,
+          subscriptionId: subscriptionId,
+          status: subscription.status ?? normalized.status ?? 'active'
+        }
+      );
+      if (!created) {
         return NextResponse.json({ error: 'Failed to create subscription' }, { status: 500 });
       }
     }
@@ -361,4 +348,3 @@ async function handleWebhook(request: Request) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
-

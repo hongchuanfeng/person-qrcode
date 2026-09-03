@@ -12,7 +12,7 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, loading, signInWithGoogle, signOut } = useAuth();
+  const { user, loading, signOut } = useAuth();
 
   const navigation = [
     { name: t('home'), href: `/${locale}` },
@@ -23,6 +23,16 @@ export default function Header() {
   ];
 
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
+  const handleSignIn = () => {
+    const next = pathname && pathname.startsWith(`/${locale}`) ? pathname : `/${locale}`;
+    router.push(`/${locale}/signin?next=${encodeURIComponent(next)}`);
+  };
+
+  const handleSignUp = () => {
+    const next = pathname && pathname.startsWith(`/${locale}`) ? pathname : `/${locale}`;
+    router.push(`/${locale}/signup?next=${encodeURIComponent(next)}`);
+  };
 
   return (
     <header className="header">
@@ -52,7 +62,7 @@ export default function Header() {
           {loading ? (
             <span className="auth-loading">{t('loading')}</span>
           ) : user ? (
-            <div 
+            <div
               className="user-menu-wrapper"
               onMouseEnter={() => setIsUserMenuOpen(true)}
               onMouseLeave={() => setIsUserMenuOpen(false)}
@@ -61,8 +71,26 @@ export default function Header() {
                 className="user-info"
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
               >
+                <span className="user-credits-badge" title={t('credits')}>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  {user.credits ?? 0}
+                </span>
                 <span className="user-name">
-                  {user.email?.split('@')[0] || user.user_metadata?.full_name || 'User'}
+                  {user.displayName ||
+                    user.email?.split('@')[0] ||
+                    'User'}
                 </span>
                 <svg
                   className={`user-menu-icon ${isUserMenuOpen ? 'open' : ''}`}
@@ -89,6 +117,9 @@ export default function Header() {
                   />
                   <div className="user-menu-dropdown">
                     <div className="user-menu-email">{user.email}</div>
+                    <div className="user-menu-credits">
+                      {t('credits')}: <strong>{user.credits ?? 0}</strong>
+                    </div>
                     <Link
                       href={`/${locale}/membership`}
                       className="user-menu-item"
@@ -113,9 +144,22 @@ export default function Header() {
               )}
             </div>
           ) : (
-            <button onClick={signInWithGoogle} className="auth-button sign-in">
-              {t('signInWithGoogle')}
-            </button>
+            <div className="auth-actions">
+              <button
+                onClick={handleSignIn}
+                className="auth-button sign-in"
+                type="button"
+              >
+                {t('signInWithEmail')}
+              </button>
+              <button
+                onClick={handleSignUp}
+                className="auth-button sign-up"
+                type="button"
+              >
+                {t('registerWithEmail')}
+              </button>
+            </div>
           )}
           <div className="language-switcher">
             <label htmlFor="language-select" className="visually-hidden">
@@ -152,4 +196,3 @@ export default function Header() {
     </header>
   );
 }
-

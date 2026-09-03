@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/utils/supabase/server";
+import { getCurrentUserServer } from "@/utils/mysql/auth";
 
 const CREEM_ENDPOINT = "https://api.creem.io/v1/checkouts";
 
@@ -30,13 +30,9 @@ type CheckoutRequest = {
 };
 
 export async function POST(req: Request) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-    error: authError
-  } = await supabase.auth.getUser();
+  const user = await getCurrentUserServer();
 
-  if (authError || !user) {
+  if (!user) {
     return NextResponse.json(
       { error: "Unauthorized. Please sign in first." },
       { status: 401 }
@@ -126,4 +122,3 @@ export async function POST(req: Request) {
     );
   }
 }
-
